@@ -1,0 +1,90 @@
+.register {
+  height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register .card {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.register .right {
+  flex: 1;
+  background: linear-gradient(rgba(39, 11, 96, 0.2), rgba(39, 11, 96, 0.2)),
+    url("../../images/register.jpg") center;
+  background-size: cover;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: white;
+}
+
+.register .right h1 {
+  font-size: 100px;
+  line-height: 100px;
+}
+
+.register .right span {
+  font-size: 14px;
+}
+
+.register .right button {
+  width: 50%;
+  padding: 10px;
+  border: none;
+  background-color: white;
+  color: var(--primary-color-darker);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.register .left {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+}
+
+.register .left h1 {
+  color: #555;
+}
+
+.register .left form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.register .left label {
+  display: flex;
+  align-items: center;
+}
+.register .left span {
+  color: var(--gray);
+}
+
+.register .left input {
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 10px;
+  width: 200px;
+  margin: 10px;
+}
+
+.register .left button {
+  width: 50%;
+  padding: 10px;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--gray);
+  font-weight: bold;
+  cursor: pointer;
+}
