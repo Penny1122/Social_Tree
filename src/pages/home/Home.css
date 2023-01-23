@@ -1,0 +1,25 @@
+.home {
+  background-color: var(--background-color);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.home ul {
+  width: 1200px;
+  min-height: 600px;
+  background-color: white;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 700px 1fr;
+  grid-template-areas: "profile content friend";
+}
+.home .profile {
+  grid-area: profile;
+}
+.home .content {
+  grid-area: content;
+  background-color: var(--light-gray);
+}
+.home .friend {
+  grid-area: friend;
+}
