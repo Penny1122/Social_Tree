@@ -52,7 +52,7 @@
 }
 
 .login .right h1 {
-  color: #555;
+  color: var(--darker-gray);
 }
 .login .right form {
   display: flex;
