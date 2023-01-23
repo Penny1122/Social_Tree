@@ -55,7 +55,7 @@
 }
 
 .register .left h1 {
-  color: #555;
+  color: var(--darker-gray);
 }
 
 .register .left form {
