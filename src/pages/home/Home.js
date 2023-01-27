@@ -7,11 +7,11 @@ const Home = () => {
     <div className="home">
       <ul>
         <li className="profile">
-          <div>123</div>
+          <div></div>
         </li>
         <Content />
         <li className="friend">
-          <div>123</div>
+          <div></div>
         </li>
       </ul>
     </div>

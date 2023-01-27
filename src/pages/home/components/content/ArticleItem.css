@@ -22,9 +22,6 @@
   border-radius: 50%;
   object-fit: cover;
 }
-.item .poster-name {
-  color: var(--darker-gray);
-}
 .item .item-photo {
   display: flex;
   justify-content: center;
@@ -47,10 +44,21 @@
   align-items: center;
   gap: 10px;
 }
+.item .like span {
+  font-weight: bold;
+}
 .item .like img {
   width: 30px;
   height: 30px;
 }
 .item .text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.item .text .poster-name {
+  font-weight: bold;
+}
+.item .text .poster-text {
   color: var(--darker-gray);
 }

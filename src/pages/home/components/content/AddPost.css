@@ -32,7 +32,8 @@
   height: 0.5px;
   background-color: var(--light-gray);
 }
-.BsImages {
+.BsImages,
+.FaUserFriends {
   color: var(--primary-color-darker);
   width: 20px;
   height: 20px;
@@ -46,10 +47,15 @@
   justify-content: flex-end;
 }
 .post-bottom-images {
-  cursor: pointer;
   display: flex;
   align-items: center;
   margin-right: auto;
+  gap: 10px;
+}
+.post-bottom-images label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .post-bottom-images span,
 .post-bottom div {
