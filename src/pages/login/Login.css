@@ -6,7 +6,7 @@
   justify-content: center;
 }
 .login .card {
-  width: 70vw;
+  /* width: 70vw; */
   display: flex;
   background-color: white;
   border-radius: 10px;
