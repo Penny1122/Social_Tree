@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { CgTrees } from "react-icons/cg";
-import { Link } from "react-router-dom";
 import { useAuthStatus } from "../hooks/useAuthStatus";
 import "./Navbar.css";
 
@@ -12,11 +12,13 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <ul>
-        <li className="title">
-          <CgTrees className="logo" />
-          <span className="title-name">Social</span>
-          <span className="title-name">Tree</span>
-        </li>
+        <Link to="/">
+          <li className="title">
+            <CgTrees className="logo" />
+            <span className="title-name">Social</span>
+            <span className="title-name">Tree</span>
+          </li>
+        </Link>
         {!user && (
           <li className="btn">
             <Link to="/login">註冊 / 登入</Link>

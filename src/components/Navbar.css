@@ -18,6 +18,11 @@
   justify-content: flex-end;
   gap: 30px;
 }
+.navbar a {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
 .title {
   letter-spacing: 1px;
   display: flex;
