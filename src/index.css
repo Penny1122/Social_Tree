@@ -16,9 +16,14 @@ h4 {
   margin: 0;
   padding: 0;
 }
+ul {
+  list-style-type: none;
+}
 :root {
   --background-color: #ffecec;
   --primary-color: #ffd2d2;
   --primary-color-darker: #ff7575;
+  --darker-gray: #555;
   --gray: #6c6c6c;
+  --light-gray: #f0f0f0;
 }
