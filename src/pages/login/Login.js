@@ -5,7 +5,7 @@ import { useLogin } from "../../hooks/useLogin";
 import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("penny@gmail.com");
   const [password, setPassword] = useState("");
   const { login, isLoading, error } = useLogin();
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import { useAuthStatus } from "./useAuthStatus";
 
@@ -6,6 +7,7 @@ export const useLogout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { dispatch } = useAuthStatus();
+  const navigate = useNavigate();
 
   const logout = async () => {
     setIsLoading(true);
@@ -17,6 +19,7 @@ export const useLogout = () => {
 
       setIsLoading(false);
       setError(null);
+      navigate("/login");
     } catch (error) {
       console.log(error.message);
       setIsLoading(false);
