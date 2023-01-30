@@ -4,7 +4,7 @@ import cat from "../../../../images/catcat.jpg";
 import Like from "../../../../images/like.png";
 import LikeFilled from "../../../../images/like-filled.png";
 
-const Item = ({ note }) => {
+const Item = ({ note, image }) => {
   return (
     <div className="item">
       <div className="poster">
@@ -12,7 +12,7 @@ const Item = ({ note }) => {
         <span className="poster-name">Penny Chen</span>
       </div>
       <div className="item-photo">
-        <img src={cat} alt=""></img>
+        <img src={image} alt=""></img>
         <div className="item-bottom">
           <div className="like">
             <img src={LikeFilled} alt=""></img>
