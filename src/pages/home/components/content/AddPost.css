@@ -9,8 +9,15 @@
 .home .post div {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
-.home .post input {
+.post .preImage-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
+.home .post textarea {
   border: none;
   outline: none;
   padding: 20px 10px;
@@ -19,12 +26,18 @@
   font-size: 16px;
   font-weight: 600;
   color: var(--darker-gray);
+  overflow: hidden;
 }
-.home .post img {
+.home .post .memberImage {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+}
+.home .post .previewImage {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
 }
 .home hr {
   margin: 20px 0px;

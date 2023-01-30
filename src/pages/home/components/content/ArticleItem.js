@@ -9,9 +9,9 @@ import LikeFilled from "../../../../images/like-filled.png";
 const ArticleItem = ({ articleContent }) => {
   return (
     <>
-      {articleContent.map((item) => {
-        const { note, id } = item;
-        return <Item key={id} note={note} />;
+      {articleContent.map((doc) => {
+        const { note, id, imageURL } = doc;
+        return <Item key={id} note={note} image={imageURL} />;
       })}
       <div className="item">
         <div className="poster">
@@ -27,7 +27,7 @@ const ArticleItem = ({ articleContent }) => {
             </div>
             <div className="text">
               <span className="poster-name">Penny Chen</span>
-              <span className="poster-text">13</span>
+              <span className="poster-text">這是我家的貓咪</span>
             </div>
           </div>
         </div>
