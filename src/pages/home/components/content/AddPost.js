@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./AddPost.css";
 import { BsImages } from "react-icons/Bs";
+import { BiLoaderCircle } from "react-icons/bi";
 import { FaUserFriends } from "react-icons/Fa";
 import MemberIcon from "../../../../images/02-6.jpg";
 import { useAddPost } from "../../../../hooks/useAddPost";
@@ -17,6 +18,8 @@ const AddPost = ({ add }) => {
       contentType: file.type,
     };
     addPost({ add, note, previewURL, file, metaData });
+    setNote("");
+    setFile(null);
   };
 
   return (
@@ -55,9 +58,16 @@ const AddPost = ({ add }) => {
             <span>標註朋友</span>
           </label>
         </div>
-        <div className="btn" onClick={handleSubmit}>
-          分享
-        </div>
+        {!isLoading && (
+          <button className="btn" onClick={handleSubmit}>
+            分享
+          </button>
+        )}
+        {isLoading && (
+          <button className="btn" disabled>
+            <BiLoaderCircle className="loading" />
+          </button>
+        )}
       </div>
     </div>
   );

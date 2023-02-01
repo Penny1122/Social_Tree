@@ -6,8 +6,7 @@ import { useGetPost } from "../../../../hooks/useGetPost";
 
 const Content = () => {
   const [content, setContent] = useState([]);
-  const { posts } = useGetPost();
-  console.log(posts);
+  const { posts, isLoading } = useGetPost();
   // useEffect(() => {
   //   getContent();
   // }, []);
@@ -25,7 +24,7 @@ const Content = () => {
   return (
     <li className="content">
       <AddPost add={setContent} />
-      <ArticleItem articleContent={posts} />
+      <ArticleItem posts={posts} />
     </li>
   );
 };
