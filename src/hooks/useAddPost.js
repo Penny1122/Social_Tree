@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuthStatus } from "../hooks/useAuthStatus";
-import { v4 } from "uuid";
 import { setDoc, collection, Timestamp, doc } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../utils/firebase";
@@ -10,9 +8,9 @@ export const useAddPost = () => {
   const { user } = useAuthStatus();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   const addPost = async ({ add, note, previewURL, file, metaData }) => {
+    setIsLoading(true);
     // const data = {
     //   id: v4(),
     //   note: note,
@@ -45,7 +43,8 @@ export const useAddPost = () => {
           photo: user.photoURL || "",
         },
       });
-      window.location.reload();
+      setIsLoading(false);
+      // window.location.reload();
     } catch (e) {
       console.error("Error adding document: ", e);
     }
