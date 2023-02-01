@@ -6,14 +6,23 @@ import cat from "../../../../images/catcat.jpg";
 import Like from "../../../../images/like.png";
 import LikeFilled from "../../../../images/like-filled.png";
 
-const ArticleItem = ({ articleContent }) => {
+const ArticleItem = ({ posts }) => {
   return (
     <>
-      {articleContent.map((doc) => {
-        const { note, id, imageURL } = doc;
-        return <Item key={id} note={note} image={imageURL} />;
+      {posts.map((doc) => {
+        const { note, id, imageURL, likedBy, author } = doc;
+        return (
+          <Item
+            key={id}
+            id={id}
+            note={note}
+            image={imageURL}
+            likedBy={likedBy}
+            author={author}
+          />
+        );
       })}
-      <div className="item">
+      {/* <div className="item">
         <div className="poster">
           <img className="poster-photo" src={MemberIcon} alt="" />
           <span className="poster-name">Penny Chen</span>
@@ -31,7 +40,7 @@ const ArticleItem = ({ articleContent }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
