@@ -76,10 +76,34 @@
   font-size: 16px;
 }
 .post .btn {
+  width: 50px;
+  height: 30px;
+  border-style: none;
+  color: var(--darker-gray);
+  font-size: 16px;
+  font-weight: bold;
   border-radius: 3px;
   cursor: pointer;
-  padding: 5px 10px;
   color: var(--darker-gray);
   background-color: var(--primary-color);
   margin: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post .loading {
+  font-size: 16px;
+  animation: loading 3s linear infinite;
+  color: var(--darker-gray);
+}
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }

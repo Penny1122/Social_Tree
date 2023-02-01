@@ -23,6 +23,7 @@
   object-fit: cover;
 }
 .item .item-photo {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,14 +31,22 @@
 }
 .item .item-photo img {
   width: 500px;
-  height: 550px;
-  object-fit: cover;
+  height: 500px;
+  object-fit: contain;
+}
+.item .heart {
+  position: absolute;
+  top: 30%;
+}
+.item .heart img {
+  width: 100px;
+  height: 100px;
 }
 .item .item-bottom {
   width: 500px;
 }
 .item .item-bottom div {
-  margin: 2px 0;
+  margin: 5px 0;
 }
 .item .like {
   display: flex;
@@ -50,6 +59,7 @@
 .item .like img {
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 .item .text {
   display: flex;
@@ -61,4 +71,41 @@
 }
 .item .text .poster-text {
   color: var(--darker-gray);
+}
+.item .message {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.item .message-input {
+  width: 50%;
+  border-style: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--darker-gray);
+  padding: 5px;
+}
+.item .send-comment {
+  font-size: 24px;
+  cursor: pointer;
+}
+.item .send-comment:hover {
+  color: var(--primary-color-darker);
+}
+.item .loading {
+  font-size: 24px;
+  animation: loading 3s linear infinite;
+  color: var(--darker-gray);
+}
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
