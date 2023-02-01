@@ -8,25 +8,34 @@ export const useGetPost = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setPosts([]);
-    let results = [];
+    setIsLoading(true);
     const postsRef = collection(db, "posts");
-    const q = query(postsRef, orderBy("createdAt", "desc"));
-    const unSub = onSnapshot(q, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        results.push({ id: doc.id, ...doc.data() });
-        // setPosts((prevContent) => {
-        //   return [
-        //     {
-        //       id: doc.id,
-        //       ...doc.data(),
-        //     },
-        //     ...prevContent,
-        //   ];
-        // });
-      });
-      setPosts(results);
-    });
+    const q = query(postsRef, orderBy("createdAt"));
+    const unSub = onSnapshot(
+      q,
+      (querySnapshot) => {
+        setPosts([]);
+
+        querySnapshot.forEach((doc) => {
+          // results.push({ id: doc.id, ...doc.data() });
+          setPosts((prevContent) => {
+            return [
+              {
+                id: doc.id,
+                ...doc.data(),
+              },
+              ...prevContent,
+            ];
+          });
+        });
+        // setPosts(results);
+      },
+      (error) => {
+        console.log(error);
+        setError("failed to fetch data");
+      }
+    );
+    setIsLoading(false);
     return () => unSub();
   }, []);
   return { isLoading, error, posts };
