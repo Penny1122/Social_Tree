@@ -10,7 +10,7 @@ const ArticleItem = ({ posts }) => {
   return (
     <>
       {posts.map((doc) => {
-        const { note, id, imageURL, likedBy, author } = doc;
+        const { note, id, imageURL, likedBy, author, commentCount } = doc;
         return (
           <Item
             key={id}
@@ -19,6 +19,7 @@ const ArticleItem = ({ posts }) => {
             image={imageURL}
             likedBy={likedBy}
             author={author}
+            commentCount={commentCount}
           />
         );
       })}

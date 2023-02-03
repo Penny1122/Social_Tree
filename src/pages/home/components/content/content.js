@@ -24,7 +24,7 @@ const Content = () => {
   return (
     <li className="content">
       <AddPost add={setContent} />
-      <ArticleItem posts={posts} />
+      {!isLoading && <ArticleItem posts={posts} />}
     </li>
   );
 };

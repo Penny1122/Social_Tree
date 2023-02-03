@@ -44,10 +44,13 @@
 }
 .item .item-bottom {
   width: 500px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
-.item .item-bottom div {
+/* .item .item-bottom div {
   margin: 5px 0;
-}
+} */
 .item .like {
   display: flex;
   align-items: center;
@@ -96,8 +99,9 @@
 .item .loading {
   font-size: 24px;
   animation: loading 3s linear infinite;
-  color: var(--darker-gray);
+  color: var(--primary-color-darker);
 }
+
 @keyframes loading {
   0% {
     -webkit-transform: rotate(0deg);
@@ -108,4 +112,20 @@
   100% {
     -webkit-transform: rotate(360deg);
   }
+}
+.item .comment {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.item .comment .poster-name {
+  font-weight: bold;
+}
+.item .comment .poster-text {
+  color: var(--darker-gray);
+}
+.item .checkAllComments {
+  color: var(--darker-gray);
+  text-decoration: underline;
+  cursor: pointer;
 }

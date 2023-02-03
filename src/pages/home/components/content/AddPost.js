@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import "./AddPost.css";
-import { BsImages } from "react-icons/Bs";
+import { BsImages } from "react-icons/bs";
 import { BiLoaderCircle } from "react-icons/bi";
 import { FaUserFriends } from "react-icons/Fa";
-import MemberIcon from "../../../../images/02-6.jpg";
 import { useAddPost } from "../../../../hooks/useAddPost";
+import { useAuthStatus } from "../../../../hooks/useAuthStatus";
 
 const AddPost = ({ add }) => {
+  const { user } = useAuthStatus();
   const { addPost, isLoading, error } = useAddPost();
   const [note, setNote] = useState("");
   const [file, setFile] = useState(null);
@@ -25,7 +26,7 @@ const AddPost = ({ add }) => {
   return (
     <div className="post">
       <div>
-        <img src={MemberIcon} alt={MemberIcon} className="memberImage" />
+        <img src={user.photoURL} alt="" className="memberImage" />
         <textarea
           wrap="hard"
           type="text"
