@@ -1,0 +1,136 @@
+.user-profile {
+  background-color: var(--background-color);
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+}
+.user-profile .user-profile-ul {
+  width: 1200px;
+  min-height: 600px;
+  background-color: var(--light-gray);
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "profile";
+}
+.user-profile .profile {
+  grid-area: profile;
+}
+.user-profile .profile-container {
+  position: relative;
+  min-height: 600px;
+  /* margin: 20px; */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.user-profile .friend {
+  grid-area: friend;
+}
+.background-image {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+.user-profile .user-backgroundImage-icon {
+  border-radius: 50%;
+  background-color: var(--light-gray-opacity);
+  padding: 5px;
+  position: absolute;
+  top: 220px;
+  right: 3%;
+  font-size: 50px;
+  cursor: pointer;
+}
+/* .user-profile .user-backgroundImage-icon:hover {
+  color: var(--primary-color-darker);
+} */
+.user-profile .check-change-backgroundImage-icon {
+  border-radius: 50%;
+  background-color: var(--light-gray-opacity);
+  position: absolute;
+  top: 300px;
+  right: 5%;
+  font-size: 40px;
+  cursor: pointer;
+}
+.user-profile .cancel-change-backgroundImage-icon {
+  border-radius: 50%;
+  background-color: var(--light-gray-opacity);
+  position: absolute;
+  top: 300px;
+  right: 1%;
+  font-size: 40px;
+  cursor: pointer;
+}
+.user-profile .user {
+  position: absolute;
+  top: 180px;
+  left: 5%;
+}
+.user-profile .user-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user-profile .user-photo-change-icon {
+  border-radius: 50%;
+  background-color: var(--light-gray-opacity);
+  padding: 5px;
+  position: absolute;
+  top: 80%;
+  left: 100px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.user-profile .user-photo-change-icon:hover,
+.user-profile .user-backgroundImage-icon:hover,
+.user-profile .check-change-backgroundImage-icon:hover,
+.user-profile .cancel-change-backgroundImage-icon:hover {
+  color: var(--primary-color-darker);
+}
+.user-profile .user-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.user-profile .edit-name-input {
+  font-size: 20px;
+  font-weight: bold;
+  max-width: 150px;
+  border-radius: 5px;
+}
+.user-profile .pencil,
+.check-edit-name,
+.cancel-edit-name {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 5px;
+}
+.user-profile .pencil:hover,
+.check-edit-name:hover,
+.cancel-edit-name:hover {
+  color: var(--primary-color-darker);
+}
+.user-profile .loading {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  animation: background-image 3s linear infinite;
+  color: var(--primary-color-darker);
+}
+@keyframes background-image {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
