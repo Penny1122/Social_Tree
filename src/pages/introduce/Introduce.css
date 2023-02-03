@@ -1,0 +1,11 @@
+.introduce {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.introduce img {
+  width: 1200px;
+  border: 5px dashed var(--darker-gray);
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
