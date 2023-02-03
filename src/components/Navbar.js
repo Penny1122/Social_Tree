@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <ul>
-        <Link to="/">
+        <Link to="/" className="title-aTag">
           <li className="title">
             <CgTrees className="logo" />
             <span className="title-name">Social</span>
@@ -26,6 +26,9 @@ const Navbar = () => {
         )}
         {user && (
           <>
+            <Link to={`/user-profile/${user.uid}`}>
+              <img className="poster-photo" src={user.photoURL} alt="" />
+            </Link>
             <li>Hello, {user.displayName}</li>
             <li className="btn" onClick={logout}>
               登出
