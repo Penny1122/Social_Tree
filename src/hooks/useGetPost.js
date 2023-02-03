@@ -28,7 +28,6 @@ export const useGetPost = () => {
             ];
           });
         });
-        // setPosts(results);
       },
       (error) => {
         console.log(error);
@@ -38,5 +37,6 @@ export const useGetPost = () => {
     setIsLoading(false);
     return () => unSub();
   }, []);
+
   return { isLoading, error, posts };
 };
