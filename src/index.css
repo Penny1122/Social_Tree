@@ -26,4 +26,5 @@ ul {
   --darker-gray: #555;
   --gray: #6c6c6c;
   --light-gray: #f0f0f0;
+  --light-gray-opacity: rgba(240, 240, 240, 0.5);
 }
