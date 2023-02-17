@@ -1,7 +1,6 @@
 .user-profile {
   background-color: var(--background-color);
-  min-height: 100vh;
-
+  /* min-height: 100vh; */
   display: flex;
   justify-content: center;
 }
@@ -25,8 +24,9 @@
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.user-profile .friend {
-  grid-area: friend;
+.user-profile .document-container {
+  margin-top: 50px;
+  display: flex;
 }
 .background-image {
   border-radius: 10px 10px 0 0;
@@ -51,7 +51,7 @@
   border-radius: 50%;
   background-color: var(--light-gray-opacity);
   position: absolute;
-  top: 300px;
+  top: 220px;
   right: 5%;
   font-size: 40px;
   cursor: pointer;
@@ -60,14 +60,14 @@
   border-radius: 50%;
   background-color: var(--light-gray-opacity);
   position: absolute;
-  top: 300px;
+  top: 220px;
   right: 1%;
   font-size: 40px;
   cursor: pointer;
 }
 .user-profile .user {
   position: absolute;
-  top: 180px;
+  top: 200px;
   left: 5%;
 }
 .user-profile .user-photo {
@@ -86,10 +86,32 @@
   font-size: 30px;
   cursor: pointer;
 }
+.user-profile .check-edit-photo {
+  border-radius: 50%;
+  background-color: var(--light-gray-opacity);
+  padding: 5px;
+  position: absolute;
+  top: 90%;
+  left: 50px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.user-profile .cancel-edit-photo {
+  border-radius: 50%;
+  background-color: var(--light-gray-opacity);
+  padding: 5px;
+  position: absolute;
+  top: 90%;
+  left: 80px;
+  font-size: 30px;
+  cursor: pointer;
+}
 .user-profile .user-photo-change-icon:hover,
 .user-profile .user-backgroundImage-icon:hover,
 .user-profile .check-change-backgroundImage-icon:hover,
-.user-profile .cancel-change-backgroundImage-icon:hover {
+.user-profile .cancel-change-backgroundImage-icon:hover,
+.user-profile .check-edit-photo:hover,
+.user-profile .cancel-edit-photo:hover {
   color: var(--primary-color-darker);
 }
 .user-profile .user-name {
@@ -103,15 +125,15 @@
   border-radius: 5px;
 }
 .user-profile .pencil,
-.check-edit-name,
-.cancel-edit-name {
+.user-profile .check-edit-name,
+.user-profile .cancel-edit-name {
   cursor: pointer;
   font-size: 20px;
   margin: 0 5px;
 }
 .user-profile .pencil:hover,
-.check-edit-name:hover,
-.cancel-edit-name:hover {
+.user-profile .check-edit-name:hover,
+.user-profile .cancel-edit-name:hover {
   color: var(--primary-color-darker);
 }
 .user-profile .loading {
@@ -133,4 +155,27 @@
   100% {
     -webkit-transform: rotate(360deg);
   }
+}
+.user-profile .btn {
+  /* width: 50px; */
+  height: 30px;
+  border-style: none;
+  color: var(--darker-gray);
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  color: var(--darker-gray);
+  background-color: var(--primary-color);
+  /* margin-left: auto;
+  margin-right: 20px; */
+  margin: 20px 40px 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-profile .article {
+  margin-left: auto;
+  overflow-y: scroll;
+  height: 100vh;
 }

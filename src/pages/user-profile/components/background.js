@@ -3,13 +3,17 @@ import { useState, useRef } from "react";
 import { BsCheck, BsX } from "react-icons/bs";
 import { TbPhoto } from "react-icons/tb";
 import { BiLoaderCircle } from "react-icons/bi";
-import { useUpdateProfile } from "../../../hooks/useUpdateProfile";
+import { useProfile } from "../../../hooks/useProfile";
 import BackgroundImage from "../../../images/defaultBackgroundImage.jpg";
 
-const Background = () => {
+const Background = ({ self }) => {
   const myRef = useRef();
-  const { updateBackgroundImage, backgroundURL, isUpdatingBackgroundImage } =
-    useUpdateProfile();
+  const {
+    updateBackgroundImage,
+    backgroundURL,
+    isUpdatingBackgroundImage,
+    profile,
+  } = useProfile();
   const [backgroundImage, setBackgroundImage] = useState("");
   const previewBackgroundImageURL = backgroundImage
     ? URL.createObjectURL(backgroundImage)
@@ -27,18 +31,17 @@ const Background = () => {
   return (
     <>
       {!backgroundImage && !isUpdatingBackgroundImage && (
-        <img
-          src={backgroundURL || BackgroundImage}
-          className="background-image"
-        />
+        <img src={[profile.backgroundURL]} className="background-image" />
       )}
       {backgroundImage && (
         <img src={previewBackgroundImageURL} className="background-image" />
       )}
       {isUpdatingBackgroundImage && <BiLoaderCircle className="loading" />}
-      <label htmlFor="change-backgroundImage">
-        <TbPhoto className="user-backgroundImage-icon" />
-      </label>
+      {!backgroundImage && self && (
+        <label htmlFor="change-backgroundImage">
+          <TbPhoto className="user-backgroundImage-icon" />
+        </label>
+      )}
       {backgroundImage && (
         <>
           <BsCheck
