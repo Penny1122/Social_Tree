@@ -1,15 +1,21 @@
 import { useState } from "react";
-import { useAuthStatus } from "../hooks/useAuthStatus";
-import { setDoc, collection, Timestamp, doc } from "firebase/firestore";
+import { useAuthStatus } from "./useAuthStatus";
+import {
+  setDoc,
+  collection,
+  Timestamp,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../utils/firebase";
 
-export const useAddPost = () => {
+export const usePost = () => {
   const { user } = useAuthStatus();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const addPost = async ({ add, note, previewURL, file, metaData }) => {
+  const addPost = async ({ note, file, metaData }) => {
     setIsLoading(true);
     try {
       const docRef = doc(collection(db, "posts"));
@@ -32,5 +38,10 @@ export const useAddPost = () => {
       console.error("Error adding document: ", e);
     }
   };
-  return { isLoading, error, addPost };
+
+  const deletePost = async ({ postId }) => {
+    await deleteDoc(doc(db, "posts", postId));
+  };
+
+  return { isLoading, error, addPost, deletePost };
 };
