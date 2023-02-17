@@ -1,33 +1,61 @@
-import React, { useState } from "react";
-import MemberIcon from "../../../../images/02-6.jpg";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Like from "../../../../images/like.png";
 import LikeFilled from "../../../../images/like-filled.png";
 import { BiLoaderCircle } from "react-icons/bi";
-import { BiSend } from "react-icons/bi";
+import { BiSend, BiDotsHorizontalRounded } from "react-icons/bi";
 import { useGetComment } from "../../../../hooks/useGetComment";
 import { useLikePost } from "../../../../hooks/useLikePost";
 import { useAddComment } from "../../../../hooks/useAddComment";
 import { useAuthStatus } from "../../../../hooks/useAuthStatus";
+import { useTime } from "../../../../hooks/useTime";
 import Comment from "./Comment";
+import EditPost from "../../../../components/editPost";
 
-const Item = ({ id, note, image, author, likedBy, commentCount }) => {
+const Item = ({
+  id,
+  note,
+  image,
+  author,
+  likedBy,
+  commentCount,
+  createdAt,
+}) => {
   const { comments, isLoading } = useGetComment(id);
   const { user } = useAuthStatus();
   const { likePost, isLoadingLike } = useLikePost();
   const { addComment } = useAddComment();
+  const { Time } = useTime();
   const [commentContent, setCommentContent] = useState("");
   const [commentCLoadingIcon, setCommentCLoadingIcon] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const [showTime, setShowTime] = useState(false);
+  const [isAuthor, setIsAuthor] = useState(false);
+  useEffect(() => {
+    if (user.uid === author.uid) {
+      setIsAuthor(true);
+    } else {
+      setIsAuthor(false);
+    }
+  }, []);
 
   const isLiked = likedBy?.includes(user.uid);
+  const createdDate = new Date(createdAt.toDate().toString());
+  const detailDate = createdDate.toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
 
   const handleLikePost = () => {
-    likePost(id, isLiked);
+    likePost({ id, isLiked, author });
   };
   const handleSubmitComment = () => {
     if (commentContent) {
       setCommentCLoadingIcon(true);
-      addComment(id, commentContent);
+      addComment({ id, commentContent, author });
       setCommentContent("");
       setTimeout(() => {
         setCommentCLoadingIcon(false);
@@ -47,9 +75,29 @@ const Item = ({ id, note, image, author, likedBy, commentCount }) => {
     <>
       <div className="item">
         <div className="poster">
-          <img className="poster-photo" src={MemberIcon} alt="" />
-          <span className="poster-name">{author.displayName}</span>
+          <Link to={`/user-profile/${author.uid}`}>
+            <img className="poster-photo" src={author.photo} alt="" />
+          </Link>
+          <div className="author-bar">
+            <Link to={`/user-profile/${author.uid}`}>
+              <span className="poster-name">{author.displayName}</span>
+            </Link>
+            <div
+              className="time"
+              onMouseEnter={() => setShowTime(true)}
+              onMouseLeave={() => setShowTime(false)}
+            >
+              {Time(createdDate)}
+            </div>
+            {showTime && <div className="detail-time">{detailDate}</div>}
+          </div>
+          {isAuthor && (
+            <div className="edit">
+              <EditPost />
+            </div>
+          )}
         </div>
+
         <div className="item-photo">
           <img src={image} alt="" onDoubleClick={handleLikePost} />
           {isLoadingLike && (
@@ -92,7 +140,7 @@ const Item = ({ id, note, image, author, likedBy, commentCount }) => {
               </div>
             )}
             <div className="message">
-              <img className="poster-photo" src={MemberIcon} alt="" />
+              <img className="poster-photo" src={user.photoURL} alt="" />
               <input
                 placeholder="新增留言"
                 className="message-input"

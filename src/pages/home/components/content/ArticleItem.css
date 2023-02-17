@@ -1,4 +1,4 @@
-.home .item {
+.item {
   border-radius: 20px;
   margin: 20px;
   min-height: 150px;
@@ -6,30 +6,57 @@
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-/* .home .item div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-} */
-.home .poster {
+.item a {
+  text-decoration: none;
+}
+.poster {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.home .item .poster-photo {
+.item .author-bar {
+  position: relative;
+}
+.item .poster-name {
+  font-weight: bold;
+}
+.item .time {
+  font-size: 14px;
+  color: var(--darker-gray);
+  cursor: pointer;
+}
+.item .time:hover {
+  text-decoration: underline;
+}
+.item .detail-time {
+  position: absolute;
+  top: 100%;
+  left: -50%;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 2px;
+  white-space: nowrap;
+}
+.item .poster-photo {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
-.item .item-photo {
+.item .edit {
+  margin-left: auto;
+  position: relative;
+}
+.item-photo {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.item .item-photo img {
+.item-photo img {
   width: 500px;
   height: 500px;
   object-fit: contain;
@@ -71,6 +98,7 @@
 }
 .item .text .poster-name {
   font-weight: bold;
+  color: black;
 }
 .item .text .poster-text {
   color: var(--darker-gray);
