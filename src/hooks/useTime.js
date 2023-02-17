@@ -6,7 +6,7 @@ export const useTime = () => {
     const duration = (Date.now() - getTime) / 1000;
     if (duration <= 60) {
       // console.log(`${Math.round(Math.max(duration, 1))}秒前`);
-      return `${Math.round(Math.max(duration, "剛剛"))}秒前`;
+      return "剛剛";
     } else if (60 < duration && duration <= 3600) {
       return `${Math.round(duration / 60)}分鐘前`;
     } else if (3600 < duration && duration <= 86400) {
