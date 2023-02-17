@@ -6,6 +6,7 @@ import {
   doc,
   writeBatch,
   increment,
+  setDoc,
 } from "firebase/firestore";
 import { useAuthStatus } from "./useAuthStatus";
 
@@ -13,7 +14,7 @@ export const useAddComment = () => {
   const [isLoadingAddComment, setIsLoadingAddComment] = useState(false);
   const { user } = useAuthStatus();
 
-  const addComment = (id, commentContent) => {
+  const addComment = async ({ id, commentContent, author }) => {
     setIsLoadingAddComment(true);
     const batch = writeBatch(db);
 
@@ -31,6 +32,17 @@ export const useAddComment = () => {
       },
     });
     batch.commit();
+    const ref = doc(db, "users", author.uid);
+    const noticeRef = doc(collection(ref, "notice"));
+    await setDoc(noticeRef, {
+      postId: id,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      uid: user.uid,
+      notice: "對您的貼文發表留言。",
+      noticedAt: Timestamp.now(),
+    });
+
     setIsLoadingAddComment(false);
   };
 
