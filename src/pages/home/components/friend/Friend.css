@@ -35,6 +35,9 @@
   justify-content: center;
   margin: 5px 0;
 }
+.friend .btn button {
+  filter: brightness(1.2);
+}
 .friend .check-btn,
 .friend .refuse-btn {
   margin: 5px 5px;
