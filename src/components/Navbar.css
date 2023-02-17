@@ -9,8 +9,9 @@
   font-weight: 500;
   font-size: 16px;
   color: var(--darker-gray);
+  display: flex;
 }
-.navbar ul {
+.navbar .navbar-ul {
   width: 1200px;
   display: flex;
   margin: 0 auto;
@@ -52,10 +53,80 @@
 .navbar .btn:hover {
   background-color: var(--primary-color);
 }
+.navbar .circle-box {
+  background-color: var(--background-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  position: relative;
+}
+.navbar .notice {
+  font-size: 20px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.navbar .notice-count {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  border-radius: 50%;
+  background-color: #ff5151;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.navbar .notice-list {
+  position: absolute;
+  top: 120%;
+  right: 50%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  z-index: 10;
+}
+.navbar .notice-list-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 10px;
+  min-width: 350px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.navbar .notice-list-item:hover {
+  background-color: var(--background-color);
+}
+.navbar .notice-list-item .poster-photo {
+  margin-right: 10px;
+}
 .navbar .poster-photo {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
+}
+.navbar .notice-list-item .name {
+  font-weight: bold;
+  margin-right: 5px;
+}
+.navbar .notice-list-item .time {
+  color: var(--darker-gray);
+  font-size: 14px;
+}
+.navbar .notice-list-item ul {
+  display: flex;
+  align-items: center;
+}
+.navbar .notice-list-item .read {
+  margin-left: auto;
+  font-size: 40px;
+  color: var(--primary-color-darker);
 }
