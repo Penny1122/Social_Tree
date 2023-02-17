@@ -4,12 +4,12 @@ import "./AddPost.css";
 import { BsImages } from "react-icons/bs";
 import { BiLoaderCircle } from "react-icons/bi";
 import { FaUserFriends } from "react-icons/fa";
-import { useAddPost } from "../../../../hooks/useAddPost";
+import { usePost } from "../../../../hooks/usePost";
 import { useAuthStatus } from "../../../../hooks/useAuthStatus";
 
 const AddPost = ({ add }) => {
   const { user } = useAuthStatus();
-  const { addPost, isLoading, error } = useAddPost();
+  const { addPost, isLoading, error } = usePost();
   const [note, setNote] = useState("");
   const [file, setFile] = useState(null);
 
