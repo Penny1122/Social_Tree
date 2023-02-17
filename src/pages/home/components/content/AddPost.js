@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./AddPost.css";
 import { BsImages } from "react-icons/bs";
 import { BiLoaderCircle } from "react-icons/bi";
-import { FaUserFriends } from "react-icons/Fa";
+import { FaUserFriends } from "react-icons/fa";
 import { useAddPost } from "../../../../hooks/useAddPost";
 import { useAuthStatus } from "../../../../hooks/useAuthStatus";
 
@@ -41,7 +41,7 @@ const AddPost = ({ add }) => {
           </div>
         )}
       </div>
-      <hr />
+      <hr className="addPost-hr" />
       <div className="post-bottom">
         <div className="post-bottom-images">
           <label htmlFor="add-image">
@@ -60,12 +60,12 @@ const AddPost = ({ add }) => {
           </label>
         </div>
         {!isLoading && (
-          <button className="btn" onClick={handleSubmit}>
+          <button className="share-btn" onClick={handleSubmit}>
             分享
           </button>
         )}
         {isLoading && (
-          <button className="btn" disabled>
+          <button className="share-btn" disabled>
             <BiLoaderCircle className="loading" />
           </button>
         )}
