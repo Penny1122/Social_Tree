@@ -1,0 +1,66 @@
+.friend .invited-friend {
+  margin: 5px 10px;
+}
+.friend .invited-slogan {
+  display: flex;
+  align-items: center;
+  color: var(--darker-gray);
+  font-weight: bold;
+  margin: 10px 0;
+}
+.friend .invited-icon {
+  color: var(--primary-color-darker);
+  font-size: 18px;
+  margin: 5px;
+}
+.friend .user a {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+.friend .user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 10px;
+}
+.friend .user-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--darker-gray);
+}
+.friend .btn {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+.friend .check-btn,
+.friend .refuse-btn {
+  margin: 5px 5px;
+  width: 40%;
+  border-radius: 5px;
+  border-style: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.friend .check-btn {
+  background-color: var(--primary-color);
+  color: var(--darker-gray);
+}
+.friend .refuse-btn {
+  background-color: var(--light-gray);
+  color: var(--darker-gray);
+}
+.friend .friend-hr {
+  border: none;
+  height: 0.5px;
+  background-color: var(--light-gray);
+}
+.friend .friend-list {
+  display: flex;
+  align-items: center;
+  color: var(--darker-gray);
+  font-weight: bold;
+  margin: 20px 0 10px 0;
+}

@@ -1,18 +1,16 @@
 import React from "react";
 import Content from "./components/content/content";
+import Friend from "./components/friend/Friend";
 import "./Home.css";
+import User from "./components/profile/user";
 
 const Home = () => {
   return (
     <div className="home">
       <ul>
-        <li className="profile">
-          <div></div>
-        </li>
+        <User />
         <Content />
-        <li className="friend">
-          <div></div>
-        </li>
+        <Friend />
       </ul>
     </div>
   );
