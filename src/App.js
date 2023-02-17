@@ -7,16 +7,18 @@ import Home from "./pages/home/Home";
 import Introduce from "./pages/introduce/Introduce";
 import UserProfile from "./pages/user-profile/userProfile";
 import Navbar from "./components/Navbar";
+import Post from "./pages/post/post";
 
 const App = () => {
   const { authReady, user } = useAuthStatus();
-  console.log(user);
+
   return (
     <div>
       {authReady && (
         <BrowserRouter>
           <Navbar />
           <Routes>
+            <Route path="/post/:postId" element={<Post />} />
             <Route path="/user-profile/:userId" element={<UserProfile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
