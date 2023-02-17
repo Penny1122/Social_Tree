@@ -1,0 +1,211 @@
+.single-post {
+  background-color: var(--background-color);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.single-post .post-ul {
+  width: 1200px;
+  height: 800px;
+  background-color: white;
+  margin-top: 20px;
+  display: flex;
+  border-radius: 5px;
+}
+.single-post .post-image {
+  border-radius: 5px 0 0 5px;
+  flex: 2;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.single-post .post-image img {
+  max-width: 600px;
+  max-height: 700px;
+}
+.single-post .post-box {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.single-post a {
+  text-decoration: none;
+}
+.single-post hr {
+  margin: 0;
+  border: none;
+  height: 0.5px;
+  background-color: var(--light-gray);
+}
+.single-post .poster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.single-post .poster .poster-photo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.single-post .author-bar {
+  position: relative;
+}
+.single-post .poster-name {
+  font-weight: bold;
+}
+.single-post .time {
+  font-size: 14px;
+  color: var(--darker-gray);
+  cursor: pointer;
+}
+.single-post .time:hover {
+  text-decoration: underline;
+}
+.single-post .detail-time {
+  position: absolute;
+  top: 100%;
+  left: -50%;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 2px;
+  white-space: nowrap;
+}
+.single-post .poster-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.single-post-photo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.single-post-photo img {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+}
+.single-post .heart {
+  position: absolute;
+  top: 30%;
+}
+.single-post .heart img {
+  width: 100px;
+  height: 100px;
+}
+.single-post .item-bottom {
+  width: 500px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+/* .single-post .single-post-bottom div {
+    margin: 5px 0;
+  } */
+.single-post .like {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.single-post .like span {
+  font-weight: bold;
+}
+.single-post .like img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.single-post .text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.single-post .text .poster-name {
+  font-weight: bold;
+  color: black;
+}
+.single-post .poster-text {
+  color: var(--darker-gray);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.single-post .message {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.single-post .message-input {
+  width: 70%;
+  border-style: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--darker-gray);
+  padding: 10px;
+  background-color: var(--light-gray);
+  border-radius: 25px;
+}
+.single-post .send-comment {
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: auto;
+}
+.single-post .send-comment:hover {
+  color: var(--primary-color-darker);
+}
+.single-post .loading {
+  font-size: 24px;
+  animation: loading 3s linear infinite;
+  color: var(--primary-color-darker);
+}
+
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+.single-post .comment {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.single-post .comment-list {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+.single-post .comment img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.single-post .comment .poster-name {
+  font-weight: bold;
+  margin-right: 5px;
+}
+.single-post .comment .poster-text {
+  color: var(--darker-gray);
+}
+.single-post .comment .comment-box {
+  border-radius: 20px;
+  background-color: var(--background-color);
+  padding: 5px 10px;
+  margin-bottom: 5px;
+}
+.single-post .comment .comment-box .comment-time {
+  font-size: 14px;
+  color: var(--darker-gray);
+}
