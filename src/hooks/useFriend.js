@@ -12,6 +12,7 @@ import {
   onSnapshot,
   updateDoc,
   deleteDoc,
+  getDocs,
 } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 
@@ -191,4 +192,33 @@ export const useFriend = () => {
   };
 
   return { friend, invited, addFriend };
+};
+export const useTagFriend = () => {
+  const { user } = useAuthStatus();
+  const [searchFriend, setSearchFriend] = useState();
+
+  const SearchFriend = async ({ queryFriend }) => {
+    setSearchFriend([]);
+    console.log(queryFriend);
+    const userRef = doc(db, "users", user.uid);
+    const friendRef = collection(userRef, "friends");
+    const q = query(
+      friendRef,
+      where("displayName", ">=", queryFriend),
+      where("displayName", "<=", queryFriend + "\uf8ff")
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      setSearchFriend((prevContent) => {
+        return [
+          {
+            id: doc.id,
+            ...doc.data(),
+          },
+          ...prevContent,
+        ];
+      });
+    });
+  };
+  return { SearchFriend, searchFriend };
 };
