@@ -61,6 +61,9 @@
   cursor: pointer;
   position: relative;
 }
+.navbar .circle-box:hover {
+  background-color: var(--primary-color);
+}
 .navbar .notice {
   font-size: 20px;
   position: relative;
