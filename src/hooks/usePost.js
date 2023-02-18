@@ -6,6 +6,7 @@ import {
   Timestamp,
   doc,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../utils/firebase";
@@ -15,7 +16,7 @@ export const usePost = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const addPost = async ({ note, file, metaData }) => {
+  const addPost = async ({ note, file, metaData, selectedFriends }) => {
     setIsLoading(true);
     try {
       const docRef = doc(collection(db, "posts"));
@@ -33,15 +34,40 @@ export const usePost = () => {
           photo: user.photoURL || "",
         },
       });
+      selectedFriends.forEach(async (uid) => {
+        const userRef = doc(db, "users", uid);
+        const noticeRef = doc(collection(userRef, "notice"));
+        await setDoc(noticeRef, {
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          uid: user.uid,
+          notice: "標註在一則貼文中",
+          noticedAt: Timestamp.now(),
+          postId: docRef.id,
+          read: false,
+          tag: true,
+        });
+      });
       setIsLoading(false);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
 
+  const editPost = async ({ newNote, newFile, postId, metaData }) => {
+    const imageRef = ref(storage, "post-images/" + postId);
+    await uploadBytesResumable(imageRef, newFile, metaData);
+    const imageURL = await getDownloadURL(imageRef);
+    const userRef = doc(db, "posts", postId);
+    await updateDoc(userRef, {
+      note: newNote,
+      imageURL: imageURL,
+    });
+  };
+
   const deletePost = async ({ postId }) => {
     await deleteDoc(doc(db, "posts", postId));
   };
 
-  return { isLoading, error, addPost, deletePost };
+  return { isLoading, error, addPost, deletePost, editPost };
 };

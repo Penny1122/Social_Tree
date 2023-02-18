@@ -7,10 +7,11 @@
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.post div {
+.post .post-div {
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
 .post .preImage-box {
   display: flex;
@@ -71,6 +72,9 @@
   display: flex;
   align-items: center;
 }
+.post-bottom-images label:hover {
+  filter: brightness(1.2);
+}
 .post-bottom-images span,
 .post-bottom div {
   color: var(--darker-gray);
@@ -107,4 +111,18 @@
   100% {
     -webkit-transform: rotate(360deg);
   }
+}
+.search-friend-list {
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  z-index: 100;
+}
+.search-friend {
+  cursor: pointer;
+}
+.search-friend:hover {
+  background-color: black;
 }
