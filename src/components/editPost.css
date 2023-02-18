@@ -1,3 +1,10 @@
+.edit-alert-box hr {
+  margin: 0;
+  border: none;
+  height: 0.5px;
+  background-color: var(--darker-gray);
+  width: 100%;
+}
 .edit-icon {
   color: var(--darker-gray);
   font-size: 30px;
@@ -41,7 +48,47 @@
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.alert-box {
+.edit-alert-box {
+  width: fit-content;
+  background-color: #eee;
+  margin: 300px auto;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.edit-alert-box .poster-box {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.edit-alert-box .edit-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.edit-alert-box textarea {
+  padding: 10px;
+  width: 250px;
+  font-size: 16px;
+  min-height: 100px;
+  resize: none;
+  color: var(--darker-gray);
+  border: none;
+  outline: none;
+}
+.new-image:hover {
+  filter: brightness(1.2);
+}
+.edit-alert-box .edit-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.delete-alert-box {
   width: 300px;
   background-color: #eee;
   margin: 300px auto;

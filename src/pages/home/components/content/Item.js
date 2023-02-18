@@ -93,7 +93,7 @@ const Item = ({
           </div>
           {isAuthor && (
             <div className="edit">
-              <EditPost postId={id} />
+              <EditPost postId={id} note={note} author={author} image={image} />
             </div>
           )}
         </div>

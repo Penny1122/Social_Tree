@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTime } from "../../../hooks/useTime";
 import { useAuthStatus } from "../../../hooks/useAuthStatus";
@@ -9,12 +9,15 @@ import { useGetComment } from "../../../hooks/useGetComment";
 import Like from "../../../images/like.png";
 import LikeFilled from "../../../images/like-filled.png";
 import SinglePostComment from "./singlePostComment";
+import EditPost from "../../../components/editPost";
 import { BiLoaderCircle } from "react-icons/bi";
 import { BiSend } from "react-icons/bi";
 
 const PostItem = ({ post }) => {
   const id = post.id;
   const author = post.author;
+  const note = post.note;
+  const image = post.imageURL;
   const { user } = useAuthStatus();
   const { addComment } = useAddComment();
   const [commentContent, setCommentContent] = useState("");
@@ -23,6 +26,14 @@ const PostItem = ({ post }) => {
   const { Time } = useTime();
   const { likePost, isLoadingLike } = useLikePost();
   const [showTime, setShowTime] = useState(false);
+  const [isAuthor, setIsAuthor] = useState(false);
+  useEffect(() => {
+    if (user.uid === author.uid) {
+      setIsAuthor(true);
+    } else {
+      setIsAuthor(false);
+    }
+  }, []);
 
   const isLiked = post.likedBy?.includes(user.uid);
   const createdDate = new Date(post.createdAt.toDate().toString());
@@ -76,6 +87,16 @@ const PostItem = ({ post }) => {
               </div>
               {showTime && <div className="detail-time">{detailDate}</div>}
             </div>
+            {isAuthor && (
+              <div className="edit">
+                <EditPost
+                  postId={id}
+                  note={note}
+                  author={author}
+                  image={image}
+                />
+              </div>
+            )}
           </div>
           <div className="poster-text">{post.note}</div>
           <hr />

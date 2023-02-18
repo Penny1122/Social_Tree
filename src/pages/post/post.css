@@ -209,3 +209,7 @@
   font-size: 14px;
   color: var(--darker-gray);
 }
+.single-post .edit {
+  margin-left: auto;
+  position: relative;
+}
