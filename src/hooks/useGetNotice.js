@@ -18,35 +18,37 @@ export const useGetNotice = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    const userRef = doc(db, "users", user.uid);
-    const noticeRef = collection(userRef, "notice");
-    const q = query(noticeRef, orderBy("noticedAt", "asc"));
-    const unSub = onSnapshot(
-      q,
-      (querySnapshot) => {
-        setNotice([]);
+    if (user) {
+      setIsLoading(true);
+      setError(null);
+      const userRef = doc(db, "users", user.uid);
+      const noticeRef = collection(userRef, "notice");
+      const q = query(noticeRef, orderBy("noticedAt", "asc"));
+      const unSub = onSnapshot(
+        q,
+        (querySnapshot) => {
+          setNotice([]);
 
-        querySnapshot.forEach((doc) => {
-          setNotice((prevContent) => {
-            return [
-              {
-                id: doc.id,
-                ...doc.data(),
-              },
-              ...prevContent,
-            ];
+          querySnapshot.forEach((doc) => {
+            setNotice((prevContent) => {
+              return [
+                {
+                  id: doc.id,
+                  ...doc.data(),
+                },
+                ...prevContent,
+              ];
+            });
           });
-        });
-      },
-      (error) => {
-        console.log(error);
-        setError("failed to fetch notice");
-      }
-    );
-    setIsLoading(false);
-    return () => unSub();
+        },
+        (error) => {
+          console.log(error);
+          setError("failed to fetch notice");
+        }
+      );
+      setIsLoading(false);
+      return () => unSub();
+    }
   }, []);
   return { notice, isLoading };
 };
@@ -57,36 +59,38 @@ export const useGetNoticeLength = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    const userRef = doc(db, "users", user.uid);
-    const noticeRef = collection(userRef, "notice");
-    const q = query(noticeRef, where("read", "==", false));
-    const unSub = onSnapshot(
-      q,
-      (querySnapshot) => {
-        setNotice([]);
+    if (user) {
+      setIsLoading(true);
+      setError(null);
+      const userRef = doc(db, "users", user.uid);
+      const noticeRef = collection(userRef, "notice");
+      const q = query(noticeRef, where("read", "==", false));
+      const unSub = onSnapshot(
+        q,
+        (querySnapshot) => {
+          setNotice([]);
 
-        querySnapshot.forEach((doc) => {
-          setNotice((prevContent) => {
-            return [
-              {
-                id: doc.id,
-                ...doc.data(),
-              },
-              ...prevContent,
-            ];
+          querySnapshot.forEach((doc) => {
+            setNotice((prevContent) => {
+              return [
+                {
+                  id: doc.id,
+                  ...doc.data(),
+                },
+                ...prevContent,
+              ];
+            });
           });
-        });
-      },
-      (error) => {
-        console.log(error);
-        setError("failed to fetch notice");
-      }
-    );
-    setIsLoading(false);
-    return () => unSub();
-  }, []);
+        },
+        (error) => {
+          console.log(error);
+          setError("failed to fetch notice");
+        }
+      );
+      setIsLoading(false);
+      return () => unSub();
+    }
+  }, [user]);
   return { notice, isLoading };
 };
 
