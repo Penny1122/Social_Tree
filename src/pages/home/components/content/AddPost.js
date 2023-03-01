@@ -16,6 +16,7 @@ const AddPost = ({ add }) => {
   const [note, setNote] = useState("");
   const [file, setFile] = useState(null);
   const [showSearchFriend, setShowSearchFriend] = useState(false);
+  const [showSearchFriendButton, setShowSearchFriendButton] = useState(false);
   const [selectedFriends, setSelectedFriends] = useState([]);
 
   const previewURL = file ? URL.createObjectURL(file) : "";
@@ -29,13 +30,12 @@ const AddPost = ({ add }) => {
   };
   const handleInputChange = async (e) => {
     const value = e.target.value;
-    await setNote(value);
+    setNote(value);
     const str = value.lastIndexOf("@");
     if (value.substring(str).includes("@")) {
       setShowSearchFriend(true);
       const queryFriend = value.split("@").pop();
       await SearchFriend({ queryFriend });
-      // fetchFriendOptions(query);
     } else {
       setShowSearchFriend(false);
     }
@@ -46,27 +46,31 @@ const AddPost = ({ add }) => {
       const str2 = note.substring(str + 1, note.length);
       const newNote = note.replace(str2, "");
       setShowSearchFriend(false);
-      setNote(newNote + friend.displayName);
+      setNote(newNote + friend.displayName + " ");
     } else if (!note.includes("@")) {
       setShowSearchFriend(false);
       setNote((prev) => {
         return [...prev, "@" + friend.displayName];
       });
     }
-
     if (!selectedFriends.includes(friend.uid)) {
       setSelectedFriends([...selectedFriends, friend.uid]);
     }
     inputRef.current.focus();
   };
-  const showTagList = () => {
-    setShowSearchFriend(true);
+  const handleSelectFriendButton = (friend) => {
+    setShowSearchFriendButton(false);
+    setNote(note + "@" + friend.displayName + " ");
+    if (!selectedFriends.includes(friend.uid)) {
+      setSelectedFriends([...selectedFriends, friend.uid]);
+    }
+    inputRef.current.focus();
+  };
+  const showTagListButton = () => {
+    setShowSearchFriendButton(true);
     const queryFriend = "";
     SearchFriend({ queryFriend });
   };
-  useEffect(() => {
-    console.log(selectedFriends);
-  }, [selectedFriends]);
   return (
     <div className="post">
       <div className="post-div">
@@ -76,7 +80,6 @@ const AddPost = ({ add }) => {
           type="text"
           placeholder="write something"
           onChange={handleInputChange}
-          // onChange={(e) => setNote(e.target.value)}
           value={note}
           required
           ref={inputRef}
@@ -87,6 +90,19 @@ const AddPost = ({ add }) => {
               <div
                 key={friend.id}
                 onClick={() => handleSelectFriend(friend)}
+                className="search-friend"
+              >
+                {friend.displayName}
+              </div>
+            ))}
+          </div>
+        )}
+        {searchFriend && showSearchFriendButton && (
+          <div className="search-friend-list">
+            {searchFriend.map((friend) => (
+              <div
+                key={friend.id}
+                onClick={() => handleSelectFriendButton(friend)}
                 className="search-friend"
               >
                 {friend.displayName}
@@ -113,7 +129,7 @@ const AddPost = ({ add }) => {
             style={{ display: "none" }}
             onChange={(e) => setFile(e.target.files[0])}
           />
-          <label onClick={showTagList}>
+          <label onClick={showTagListButton}>
             <FaUserFriends className="FaUserFriends" />
             <span>標註朋友</span>
           </label>
