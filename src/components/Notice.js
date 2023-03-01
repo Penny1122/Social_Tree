@@ -17,6 +17,7 @@ const Notice = () => {
           noticedAt,
           read,
           postId,
+          tag,
         } = doc;
         return (
           <NoticeItem
@@ -29,6 +30,7 @@ const Notice = () => {
             noticedAt={noticedAt}
             read={read}
             postId={postId}
+            tag={tag}
           />
         );
       })}

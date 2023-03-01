@@ -12,6 +12,7 @@ const NoticeItem = ({
   noticedAt,
   read,
   postId,
+  tag,
 }) => {
   const { UpdateNotice } = useUpdateNotice();
   const { Time } = useTime();
@@ -30,8 +31,14 @@ const NoticeItem = ({
       <img className="poster-photo" src={photoURL} alt="" />
       <ul>
         <li>
-          <span className="name">{displayName}</span>
-          <span className="notice-content">{notice}</span>
+          {!tag && <span className="name">{displayName}</span>}
+          {!tag && <span className="notice-content">{notice}</span>}
+          {tag && (
+            <span className="notice-content">
+              您被 <span className="name">{displayName}</span>
+              {notice}
+            </span>
+          )}
           <br />
           <span className="time">{Time(noticedDate)}</span>
         </li>
