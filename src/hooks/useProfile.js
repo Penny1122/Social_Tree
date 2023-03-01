@@ -34,7 +34,7 @@ export const useProfile = () => {
       // console.log(doc.data());
     });
     return () => unSub;
-  }, []);
+  }, [userId]);
 
   // 更新背景圖片
   const updateBackgroundImage = async ({ metaData, backgroundImage }) => {
