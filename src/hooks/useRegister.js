@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../utils/firebase";
 import { useAuthStatus } from "./useAuthStatus";
-import { doc, setDoc, collection } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 
 export const useRegister = () => {
@@ -51,15 +51,30 @@ export const useRegister = () => {
         photoURL: response.user.photoURL,
         backgroundURL: defaultBackgroundImageURL,
       });
+      await setDoc(doc(db, "userChats", response.user.uid), {});
 
       setIsLoading(false);
       setError(null);
 
       navigate("/");
     } catch (error) {
-      console.log(error.message);
+      switch (error.code) {
+        case "auth/invalid-email":
+          setError("信箱格式不正確");
+          break;
+        case "auth/email.-already-in-use":
+          setError("此信箱已被使用");
+          break;
+        case "auth/weak-password":
+          setError("密碼強度不足：至少需6位數字/字元");
+          break;
+        case "internal-error":
+          setError("密碼不可為空白");
+          break;
+        default:
+      }
+      console.log(error.code);
       setIsLoading(false);
-      setError(error.message);
     }
   };
   return { isLoading, error, register };
