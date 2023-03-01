@@ -24,6 +24,7 @@ const Register = () => {
             <label>
               <span>姓名：</span>
               <input
+                required
                 type="text"
                 onChange={(e) => setUserName(e.target.value)}
                 value={userName}
@@ -32,6 +33,7 @@ const Register = () => {
             <label>
               <span>信箱：</span>
               <input
+                required
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
@@ -40,14 +42,22 @@ const Register = () => {
             <label>
               <span>密碼：</span>
               <input
+                required
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
             </label>
-            {!isLoading && <button>Register</button>}
+            {!isLoading && <button>註冊 / Register</button>}
             {isLoading && <button disabled>Loading</button>}
             {error && <p>{error}</p>}
+            <p className="to-login">
+              已經有帳戶了？
+              <Link to="/login" className="to-login-link">
+                點此
+              </Link>
+              登入
+            </p>
           </form>
         </div>
         <div className="right">
@@ -55,7 +65,7 @@ const Register = () => {
           <p>享受人與人之間無距離的互動</p>
           <span>Do you have an account?</span>
           <Link to="/login">
-            <button>Login</button>
+            <button>登入 / Login</button>
           </Link>
         </div>
       </div>
