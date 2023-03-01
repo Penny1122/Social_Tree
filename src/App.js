@@ -8,6 +8,7 @@ import Introduce from "./pages/introduce/Introduce";
 import UserProfile from "./pages/user-profile/userProfile";
 import Navbar from "./components/Navbar";
 import Post from "./pages/post/post";
+import ChatRoom from "./pages/chat/chatRoom";
 
 const App = () => {
   const { authReady, user } = useAuthStatus();
@@ -18,6 +19,7 @@ const App = () => {
         <BrowserRouter>
           <Navbar />
           <Routes>
+            <Route path="/chatroom" element={<ChatRoom />} />
             <Route path="/post/:postId" element={<Post />} />
             <Route path="/user-profile/:userId" element={<UserProfile />} />
             <Route path="/login" element={<Login />} />
