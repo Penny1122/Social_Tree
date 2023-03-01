@@ -22,7 +22,7 @@ const Login = () => {
           <p>享受人與人之間無距離的互動</p>
           <span>Don't you have an account?</span>
           <Link to="/register">
-            <button>Register</button>
+            <button>註冊 / Register</button>
           </Link>
         </div>
         <div className="right">
@@ -31,6 +31,7 @@ const Login = () => {
             <label>
               <span>信箱：</span>
               <input
+                required
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
@@ -39,14 +40,22 @@ const Login = () => {
             <label>
               <span>密碼：</span>
               <input
+                required
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
             </label>
-            {!isLoading && <button>Login</button>}
+            {!isLoading && <button>登入 / Login</button>}
             {isLoading && <button disabled>Loading</button>}
             {error && <p>{error}</p>}
+            <p className="to-register">
+              還沒有帳戶嗎？
+              <Link to="/register" className="to-register-link">
+                點此
+              </Link>
+              註冊
+            </p>
           </form>
         </div>
       </div>

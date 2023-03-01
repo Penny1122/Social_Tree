@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Like from "../../../../images/like.png";
 import LikeFilled from "../../../../images/like-filled.png";
 import { BiLoaderCircle } from "react-icons/bi";
@@ -31,6 +31,7 @@ const Item = ({
   const [showComments, setShowComments] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [isAuthor, setIsAuthor] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     if (user.uid === author.uid) {
       setIsAuthor(true);
@@ -49,7 +50,8 @@ const Item = ({
     minute: "numeric",
   });
 
-  const handleLikePost = () => {
+  const handleLikePost = (e) => {
+    e.preventDefault();
     likePost({ id, isLiked, author });
   };
   const handleSubmitComment = () => {
@@ -62,6 +64,10 @@ const Item = ({
       }, 1000);
       setShowComments(true);
     }
+  };
+  const handleLink = (e) => {
+    e.preventDefault();
+    navigate(`/post/${id}`);
   };
   const showAllComments = () => {
     if (!showComments) {
@@ -99,7 +105,7 @@ const Item = ({
         </div>
 
         <div className="item-photo">
-          <img src={image} alt="" onDoubleClick={handleLikePost} />
+          <img src={image} alt="" onClick={handleLink} />
           {isLoadingLike && (
             <div className="heart">
               <img src={LikeFilled} alt="" />
