@@ -14,7 +14,6 @@ const FriendProfile = () => {
     const displayName = profile.displayName;
     addFriend({ uid, photoURL, displayName });
   };
-  console.log(friend, invited);
   return (
     <>
       <li className="user">
