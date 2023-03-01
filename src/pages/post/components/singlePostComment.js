@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useTime } from "../../../hooks/useTime";
 
 const SinglePostComment = ({ content, author, createdAt }) => {
@@ -11,12 +12,15 @@ const SinglePostComment = ({ content, author, createdAt }) => {
     hour: "numeric",
     minute: "numeric",
   });
-  console.log(detailDate);
   return (
     <div className="comment">
-      <img src={author.photoURL} />
+      <Link to={`/user-profile/${author.uid}`}>
+        <img src={author.photoURL} />
+      </Link>
       <div className="comment-box">
-        <span className="poster-name">{author.displayName}</span>
+        <Link to={`/user-profile/${author.uid}`}>
+          <span className="poster-name">{author.displayName}</span>
+        </Link>
         <span className="comment-time">{Time(createdDate)}</span>
         <br />
         <span className="poster-text">{content}</span>

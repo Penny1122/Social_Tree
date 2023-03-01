@@ -87,7 +87,7 @@ export const useGetMyPost = () => {
     );
     setIsLoading(false);
     return () => unSub();
-  }, []);
+  }, [userId]);
 
   return { isLoading, error, posts };
 };
