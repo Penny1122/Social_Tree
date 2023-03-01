@@ -22,7 +22,7 @@ const FriendsInvitedItem = ({ uid, displayName, photoURL, invitedAt }) => {
         <button className="check-btn" onClick={handleAccept}>
           確認
         </button>
-        <button className="refuse-btn">拒絕</button>
+        <button className="refuse-btn">忽略</button>
       </div>
     </>
   );
