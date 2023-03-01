@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 
 export const useFriendInvite = () => {
   const { user } = useAuthStatus();
+  const { userId } = useParams();
   const [inviteInfo, setInviteInfo] = useState([]);
   const [friendsInfo, setFriendsInfo] = useState([]);
   const [empty, setEmpty] = useState(false);
@@ -56,7 +57,7 @@ export const useFriendInvite = () => {
     );
     setIsLoading(false);
     return () => unSub();
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -93,6 +94,48 @@ export const useFriendInvite = () => {
     return () => unSub();
   }, []);
   return { empty, friendsInfo, inviteInfo, useFriendInvite };
+};
+
+export const friendList = () => {
+  const { userId } = useParams();
+  const [friendsList, setFriendsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const userRef = doc(db, "users", userId);
+    const friendRef = collection(userRef, "friends");
+    const q = query(
+      friendRef,
+      where("reply", "==", true),
+      orderBy("invitedAt", "desc")
+    );
+    const unSub = onSnapshot(
+      q,
+      (querySnapshot) => {
+        setFriendsList([]);
+        querySnapshot.forEach((doc) => {
+          setFriendsList((prevContent) => {
+            return [
+              {
+                id: doc.id,
+                ...doc.data(),
+              },
+              ...prevContent,
+            ];
+          });
+        });
+      },
+      (error) => {
+        console.log(error);
+        setError("failed to fetch friends");
+      }
+    );
+    setIsLoading(false);
+    return () => unSub();
+  }, [userId]);
+  return { friendsList };
 };
 
 export const handleFriend = () => {
@@ -144,7 +187,6 @@ export const useFriend = () => {
     const unSub = onSnapshot(friendRef, (docSnap) => {
       console.log(docSnap);
       if (docSnap.exists() && docSnap.data().reply) {
-        console.log("Document data:", docSnap.data());
         setInvited(true);
         setFriend(true);
       } else if (docSnap.exists()) {
@@ -220,5 +262,35 @@ export const useTagFriend = () => {
       });
     });
   };
-  return { SearchFriend, searchFriend };
+  return {
+    SearchFriend,
+    searchFriend,
+  };
+};
+
+export const useSearchUser = () => {
+  const [userList, setUserList] = useState();
+
+  const SearchUser = async (queryUser) => {
+    setUserList([]);
+    const userRef = collection(db, "users");
+    const q = query(
+      userRef,
+      where("displayName", ">=", queryUser),
+      where("displayName", "<=", queryUser + "\uf8ff")
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      setUserList((prevContent) => {
+        return [
+          {
+            id: doc.id,
+            ...doc.data(),
+          },
+          ...prevContent,
+        ];
+      });
+    });
+  };
+  return { SearchUser, userList };
 };
