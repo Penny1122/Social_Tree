@@ -1,12 +1,10 @@
 .albumAndFriend {
   margin: 20px;
   min-height: 600px;
-  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 .albumAndFriend .title {
   width: 500px;
   display: flex;
-  /* justify-content: center; */
 }
 .albumAndFriend .title span {
   cursor: pointer;
@@ -26,16 +24,57 @@
 .albumAndFriend .title .click {
   background-color: var(--primary-color);
 }
-.albumAndFriend .photo {
+.albumAndFriend .photo,
+.albumAndFriend .friend {
   width: 500px;
   min-height: 500px;
   border: 0.5px solid var(--primary-color);
-  display: flex;
-  /* justify-content: center; */
   flex-wrap: wrap;
 }
 .albumAndFriend .photo img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
+}
+.albumAndFriend .friend {
+  display: flex;
+}
+.albumAndFriend .friend-item {
+  width: 120px;
+  border: 1px solid var(--light-gray);
+  display: flex;
+}
+.albumAndFriend .friend-item img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+.albumAndFriend .friend-item .name {
+  border-top: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--darker-gray);
+  font-weight: bold;
+  font-size: 18px;
+}
+@media (max-width: 1200px) {
+  .albumAndFriend {
+    margin: 20px 10px;
+  }
+  .albumAndFriend .post,
+  .albumAndFriend .item {
+    margin-left: 10px;
+  }
+  .albumAndFriend .title,
+  .albumAndFriend .photo,
+  .albumAndFriend .friend {
+    width: 250px;
+  }
+}
+@media (max-width: 900px) {
+  .albumAndFriend {
+    display: none;
+  }
 }

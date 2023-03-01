@@ -10,7 +10,7 @@
   display: flex;
   background-color: white;
   border-radius: 10px;
-  min-height: 600px;
+  height: 600px;
   overflow: hidden;
 }
 
@@ -87,4 +87,35 @@
   color: var(--gray);
   font-weight: bold;
   cursor: pointer;
+}
+.register .to-login {
+  display: none;
+}
+@media (max-width: 600px) {
+  .register {
+    align-items: unset;
+    padding: 40px;
+  }
+  .register .card {
+    width: 100%;
+  }
+  .register .left {
+    padding: 20px;
+  }
+  .register .right {
+    display: none;
+  }
+  .register .left input {
+    width: 70%;
+  }
+  .register .to-login {
+    display: block;
+  }
+  .register .to-login-link {
+    cursor: pointer;
+    color: #ff2d2d;
+  }
+  .register .left button {
+    width: 80%;
+  }
 }

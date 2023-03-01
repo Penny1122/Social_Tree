@@ -10,7 +10,7 @@
   background-color: white;
   margin-top: 20px;
   display: grid;
-  grid-template-columns: 1fr 700px 1fr;
+  grid-template-columns: 1fr 600px 1fr;
   grid-template-areas: "profile content friend";
 }
 a {
@@ -33,4 +33,24 @@ a {
 }
 .home .friend {
   grid-area: friend;
+}
+@media (max-width: 1200px) {
+  .home .profile {
+    display: none;
+  }
+  .home ul {
+    width: 900px;
+    grid-template-columns: 600px 300px;
+    grid-template-areas: "content friend";
+  }
+}
+@media (max-width: 900px) {
+  .home .friend {
+    display: none;
+  }
+  .home ul {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas: "content";
+  }
 }

@@ -179,3 +179,10 @@
   overflow-y: scroll;
   height: 100vh;
 }
+@media (max-width: 600px) {
+  .user-profile .user {
+    position: absolute;
+    top: 150px;
+    left: 5%;
+  }
+}

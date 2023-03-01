@@ -1,11 +1,36 @@
 .introduce {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(#e9bedd, #ebc7e1, #e0b5d3);
+  height: 400px;
+}
+.introduce-slogan {
+  width: 1200px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
-.introduce img {
-  width: 1200px;
-  border: 5px dashed var(--darker-gray);
+.introduce-text {
+  padding: 10px;
+  width: 600px;
+  height: 300px;
   border-radius: 10px;
-  margin-bottom: 5px;
+  background-color: rgb(255, 255, 255, 0.5);
+}
+.introduce-text div {
+  font-size: 30px;
+  color: var(--primary-color-darker);
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+.introduce-text li {
+  font-size: 20px;
+  color: var(--darker-gray);
+  font-weight: bold;
+  line-height: 35px;
+}
+.introduce img {
+  border-radius: 10px;
+  height: 400px;
+  object-fit: contain;
 }

@@ -191,6 +191,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  object-fit: cover;
 }
 .single-post .comment .poster-name {
   font-weight: bold;
@@ -212,4 +213,33 @@
 .single-post .edit {
   margin-left: auto;
   position: relative;
+}
+@media (max-width: 1200px) {
+  .single-post .post-ul {
+    width: 100%;
+  }
+  .single-post .post-image img {
+    max-width: 400px;
+    max-height: 400px;
+  }
+}
+@media (max-width: 700px) {
+  .single-post .post-ul {
+    width: 100%;
+    display: block;
+  }
+  .single-post .post-image img {
+    max-width: 400px;
+    max-height: 400px;
+  }
+}
+@media (max-width: 450px) {
+  .single-post .post-ul {
+    width: 100%;
+    display: block;
+  }
+  .single-post .post-image img {
+    max-width: 300px;
+    max-height: 300px;
+  }
 }

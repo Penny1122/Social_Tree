@@ -157,3 +157,21 @@
   text-decoration: underline;
   cursor: pointer;
 }
+@media (max-width: 600px) {
+  .item-photo img {
+    width: 360px;
+    height: 360px;
+  }
+  .item .item-bottom {
+    width: 360px;
+  }
+}
+@media (max-width: 460px) {
+  .item-photo img {
+    width: 250px;
+    height: 250px;
+  }
+  .item .item-bottom {
+    width: 250px;
+  }
+}
