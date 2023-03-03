@@ -13,7 +13,11 @@
   font-size: 18px;
   margin: 5px;
 }
-.friend .user a {
+.friend .user:hover {
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+.friend .user .link {
   display: flex;
   align-items: center;
   margin: 5px 0;
@@ -66,4 +70,9 @@
   color: var(--darker-gray);
   font-weight: bold;
   margin: 20px 0 10px 0;
+}
+.friend .read {
+  margin-left: auto;
+  font-size: 40px;
+  color: var(--primary-color-darker);
 }
