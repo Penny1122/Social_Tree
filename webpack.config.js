@@ -40,7 +40,10 @@ module.exports = {
   devtool: "source-map",
   plugins: [
     new HtmlWebpackPlugin({
+      filename: "./index.html",
       template: "./index.html",
+      inject: true,
+      favicon: path.resolve("src/images/tree.ico"),
     }),
     new MiniCssExtractPlugin({
       filename: "main.[hash].css",
