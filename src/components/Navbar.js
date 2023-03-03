@@ -65,7 +65,7 @@ const Navbar = () => {
                 <span className="title-name">Tree</span>
               </li>
             </Link>
-            {showIcon && (
+            {showIcon && user && (
               <div
                 className="circle-box RWDIcon"
                 onClick={() => {
