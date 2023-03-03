@@ -221,11 +221,17 @@
   .introduce .device {
     flex-direction: column;
     gap: 10px;
+    align-items: center;
   }
 }
 @media (max-width: 800px) {
   .introduce .function {
     flex-direction: column;
     gap: 10px;
+  }
+}
+@media (max-width: 700px) {
+  .introduce .device img {
+    width: 100%;
   }
 }
