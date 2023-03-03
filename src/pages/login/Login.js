@@ -48,7 +48,7 @@ const Login = () => {
             </label>
             {!isLoading && <button>登入 / Login</button>}
             {isLoading && <button disabled>Loading</button>}
-            {error && <p>{error}</p>}
+            {error && <p className="error">{error}</p>}
             <p className="to-register">
               還沒有帳戶嗎？
               <Link to="/register" className="to-register-link">

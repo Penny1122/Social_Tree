@@ -86,6 +86,9 @@
 .login .to-register {
   display: none;
 }
+.login .error {
+  color: #ff2d2d;
+}
 @media (max-width: 600px) {
   .login {
     align-items: unset;

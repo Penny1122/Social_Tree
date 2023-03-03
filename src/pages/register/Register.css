@@ -91,6 +91,9 @@
 .register .to-login {
   display: none;
 }
+.register .error {
+  color: #ff2d2d;
+}
 @media (max-width: 600px) {
   .register {
     align-items: unset;

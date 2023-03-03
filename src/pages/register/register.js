@@ -50,7 +50,7 @@ const Register = () => {
             </label>
             {!isLoading && <button>註冊 / Register</button>}
             {isLoading && <button disabled>Loading</button>}
-            {error && <p>{error}</p>}
+            {error && <p className="error">{error}</p>}
             <p className="to-login">
               已經有帳戶了？
               <Link to="/login" className="to-login-link">
