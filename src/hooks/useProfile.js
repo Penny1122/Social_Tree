@@ -14,7 +14,6 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { auth } from "../utils/firebase";
 import { updateProfile } from "firebase/auth";
 import { useAuthStatus } from "./useAuthStatus";
-import BackgroundImage from "../images/defaultBackgroundImage.jpg";
 
 export const useProfile = () => {
   const { userId } = useParams();
@@ -119,6 +118,18 @@ export const useProfile = () => {
         });
       });
     });
+
+    const chatRef = query(
+      collection(db, "userChats"),
+      where(`${user.uid}.userInfo.uid`, "==", user.uid)
+    );
+    const userChats = await getDocs(chatRef);
+    userChats.forEach(async (document) => {
+      const ref = doc(db, "userChats", document.id);
+      await updateDoc(ref, {
+        [`${user.uid}.userInfo.displayName`]: userDisplayName,
+      });
+    });
   };
 
   // 更新大頭貼
@@ -191,6 +202,17 @@ export const useProfile = () => {
         await updateDoc(docRef, {
           "author.photo": photoURL,
         });
+      });
+    });
+    const chatRef = query(
+      collection(db, "userChats"),
+      where(`${user.uid}.userInfo.uid`, "==", user.uid)
+    );
+    const userChats = await getDocs(chatRef);
+    userChats.forEach(async (document) => {
+      const ref = doc(db, "userChats", document.id);
+      await updateDoc(ref, {
+        [`${user.uid}.userInfo.photoURL`]: photoURL,
       });
     });
   };
