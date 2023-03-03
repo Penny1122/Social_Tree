@@ -33,11 +33,11 @@
 .chatRoom .searchForm input {
   background-color: transparent;
   border: none;
-  color: white;
+  color: var(--darker-gray);
   outline: none;
 }
 
-.sidebar .navbar {
+.sidebar .chat-navbar {
   display: flex;
   align-items: center;
   background-color: #ff9797;
@@ -46,21 +46,21 @@
   justify-content: space-between;
 }
 
-.sidebar .navbar .chat-logo {
+.sidebar .chat-navbar .chat-logo {
   color: var(--darker-gray);
   font-weight: bold;
 }
 
-.sidebar .navbar .user {
+.sidebar .chat-navbar .user {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.sidebar .navbar .user span {
+.sidebar .chat-navbar .user span {
   color: var(--darker-gray);
   font-weight: bold;
 }
-.sidebar .navbar .user img {
+.sidebar .chat-navbar .user img {
   background-color: #ddddf7;
   height: 30px;
   width: 30px;
@@ -68,7 +68,7 @@
   object-fit: cover;
 }
 
-.sidebar .navbar .user button {
+.sidebar .chat-navbar .user button {
   background-color: #5d5b8d;
   color: #ddddf7;
   font-size: 10px;
@@ -149,7 +149,7 @@
 
 .messages .message {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
@@ -183,7 +183,7 @@
 }
 
 .messages .messageContent img {
-  width: 50%;
+  width: 200px;
 }
 
 .owner {
@@ -192,6 +192,7 @@
 
 .owner .messageContent {
   align-items: flex-end;
+  /* flex-direction: row-reverse; */
 }
 .owner .messageContent p {
   background-color: #ffd2d2;
@@ -240,4 +241,19 @@
   background-color: var(--primary-color);
   cursor: pointer;
   font-weight: bold;
+}
+.readContent {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.readContent2 {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.readContent div,
+.readContent2 div {
+  color: var(--gray);
+  font-size: 14px;
 }
