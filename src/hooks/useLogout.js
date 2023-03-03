@@ -19,7 +19,7 @@ export const useLogout = () => {
 
       setIsLoading(false);
       setError(null);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.log(error.message);
       setIsLoading(false);
