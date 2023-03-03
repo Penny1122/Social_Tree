@@ -4,7 +4,7 @@ import { useAuthStatus } from "../../../hooks/useAuthStatus";
 const Navbar = () => {
   const { user } = useAuthStatus();
   return (
-    <div className="navbar">
+    <div className="chat-navbar">
       <span className="chat-logo">SocialTree Chat</span>
       <div className="user">
         <img src={user.photoURL} alt="" />

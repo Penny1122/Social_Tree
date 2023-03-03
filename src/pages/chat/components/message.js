@@ -27,12 +27,14 @@ const Message = ({ message }) => {
           }
           alt=""
         />
-        <span>{time}</span>
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
-        {message.read && message.senderId === user.uid && <span>已讀</span>}
         {message.img && <img src={message.img} alt="" />}
+      </div>
+      <div className="readContent">
+        {message.read && message.senderId === user.uid && <div>已讀</div>}
+        <div>{time}</div>
       </div>
     </div>
   );
