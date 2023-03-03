@@ -19,7 +19,6 @@ import {
 import { db, storage } from "./../utils/firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { v4 } from "uuid";
-import { async } from "@firebase/util";
 
 export const useChatStatus = () => {
   const context = useContext(ChatContext);
@@ -97,37 +96,80 @@ export const useChat = () => {
 
         //create user chats
         await updateDoc(doc(db, "userChats", user.uid), {
-          [combinedId + ".userInfo"]: {
+          [searchUser.uid + ".userInfo"]: {
             uid: searchUser.uid,
             displayName: searchUser.displayName,
             photoURL: searchUser.photoURL,
           },
-          [combinedId + ".date"]: serverTimestamp(),
-          [combinedId + ".unreadCount"]: 0,
+          [searchUser.uid + ".date"]: serverTimestamp(),
+          [searchUser.uid + ".unreadCount"]: 0,
         });
 
         await updateDoc(doc(db, "userChats", searchUser.uid), {
-          [combinedId + ".userInfo"]: {
+          [user.uid + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
             photoURL: user.photoURL,
           },
-          [combinedId + ".date"]: serverTimestamp(),
-          [combinedId + ".unreadCount"]: 0,
+          [user.uid + ".date"]: serverTimestamp(),
+          [user.uid + ".unreadCount"]: 0,
         });
       }
     } catch (err) {}
   };
+
+  const CreateGroupFromFriendList = async ({ uid, photoURL, displayName }) => {
+    const combinedId = user.uid > uid ? user.uid + uid : uid + user.uid;
+    try {
+      const res = await getDoc(doc(db, "chats", combinedId));
+
+      if (!res.exists()) {
+        //create a chat in chats collection
+        await setDoc(doc(db, "chats", combinedId), { messages: [] });
+
+        //create user chats
+        await updateDoc(doc(db, "userChats", user.uid), {
+          [uid + ".userInfo"]: {
+            uid: uid,
+            displayName: displayName,
+            photoURL: photoURL,
+          },
+          [uid + ".date"]: serverTimestamp(),
+          [uid + ".unreadCount"]: 0,
+        });
+
+        await updateDoc(doc(db, "userChats", searchUser.uid), {
+          [user.uid + ".userInfo"]: {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          },
+          [user.uid + ".date"]: serverTimestamp(),
+          [user.uid + ".unreadCount"]: 0,
+        });
+      }
+    } catch (err) {}
+  };
+
   const ReadMessage = async (uid) => {
     const combinedId = user.uid > uid ? user.uid + uid : uid + user.uid;
     await updateDoc(doc(db, "userChats", user.uid), {
-      [combinedId + ".unreadCount"]: 0,
+      [uid + ".unreadCount"]: 0,
     });
     const chatsRef = doc(db, "chats", combinedId);
     const querySnapshot = await getDoc(chatsRef);
     const message = querySnapshot.data().messages;
     const updatedMessage = message.map((doc) => {
-      if (doc.senderId == uid) {
+      if (doc.senderId == uid && doc.img) {
+        return {
+          id: doc.id,
+          date: doc.date,
+          senderId: doc.senderId,
+          text: doc.text,
+          read: true,
+          img: doc.img,
+        };
+      } else if (doc.senderId == uid && !doc.img) {
         return {
           id: doc.id,
           date: doc.date,
@@ -135,7 +177,17 @@ export const useChat = () => {
           text: doc.text,
           read: true,
         };
-      } else {
+      } else if (doc.senderId != uid && doc.img) {
+        return {
+          id: doc.id,
+          date: doc.date,
+          senderId: doc.senderId,
+          text: doc.text,
+          read: doc.read,
+          img: doc.img,
+        };
+      }
+      {
         return {
           id: doc.id,
           date: doc.date,
@@ -153,13 +205,22 @@ export const useChat = () => {
         ? user.uid + userData.uid
         : userData.uid + user.uid;
     await updateDoc(doc(db, "userChats", user.uid), {
-      [chatId + ".unreadCount"]: 0,
+      [userData.uid + ".unreadCount"]: 0,
     });
     const chatsRef = doc(db, "chats", combinedId);
     const querySnapshot = await getDoc(chatsRef);
     const message = querySnapshot.data().messages;
     const updatedMessage = message.map((doc) => {
-      if (doc.senderId == userData.uid) {
+      if (doc.senderId == userData.uid && doc.img) {
+        return {
+          id: doc.id,
+          date: doc.date,
+          senderId: doc.senderId,
+          text: doc.text,
+          read: true,
+          img: doc.img,
+        };
+      } else if (doc.senderId == userData.uid && !doc.img) {
         return {
           id: doc.id,
           date: doc.date,
@@ -167,7 +228,17 @@ export const useChat = () => {
           text: doc.text,
           read: true,
         };
-      } else {
+      } else if (doc.senderId != userData.uid && doc.img) {
+        return {
+          id: doc.id,
+          date: doc.date,
+          senderId: doc.senderId,
+          text: doc.text,
+          read: doc.read,
+          img: doc.img,
+        };
+      }
+      {
         return {
           id: doc.id,
           date: doc.date,
@@ -177,7 +248,6 @@ export const useChat = () => {
         };
       }
     });
-    console.log(updatedMessage);
     await updateDoc(chatsRef, { messages: updatedMessage });
   };
 
@@ -211,19 +281,19 @@ export const useChat = () => {
     }
 
     await updateDoc(doc(db, "userChats", user.uid), {
-      [chatId + ".lastMessage"]: {
+      [userData.uid + ".lastMessage"]: {
         text,
       },
-      [chatId + ".date"]: serverTimestamp(),
+      [userData.uid + ".date"]: serverTimestamp(),
     });
 
     await updateDoc(doc(db, "userChats", userData.uid), {
       //   unreadCount: increment(1),
-      [chatId + ".lastMessage"]: {
+      [user.uid + ".lastMessage"]: {
         text,
       },
-      [chatId + ".date"]: serverTimestamp(),
-      [chatId + ".unreadCount"]: increment(1),
+      [user.uid + ".date"]: serverTimestamp(),
+      [user.uid + ".unreadCount"]: increment(1),
     });
   };
 
@@ -238,5 +308,22 @@ export const useChat = () => {
     messages,
     ReadMessage,
     ReadMessage2,
+    CreateGroupFromFriendList,
   };
+};
+export const chatNotice = (uid) => {
+  const { user } = useAuthStatus();
+  const [notice, setNotice] = useState(false);
+  useEffect(() => {
+    const chatsRef = doc(db, "userChats", user.uid);
+    const unSub = onSnapshot(chatsRef, (doc) => {
+      if (doc.data()[uid] && doc.data()[uid].unreadCount > 0) {
+        setNotice(true);
+      } else {
+        setNotice(false);
+      }
+    });
+    return () => unSub();
+  }, []);
+  return { notice };
 };

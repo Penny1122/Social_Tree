@@ -1,16 +1,4 @@
 import React, { useState } from "react";
-import { db } from "../../../utils/firebase";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  setDoc,
-  doc,
-  updateDoc,
-  serverTimestamp,
-  getDoc,
-} from "firebase/firestore";
 import { useAuthStatus } from "../../../hooks/useAuthStatus";
 import { useChat } from "../../../hooks/useChat";
 
