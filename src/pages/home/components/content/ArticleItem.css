@@ -38,6 +38,7 @@
   border-radius: 5px;
   padding: 5px 2px;
   white-space: nowrap;
+  z-index: 150;
 }
 .item .poster-photo {
   width: 40px;
