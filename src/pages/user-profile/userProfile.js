@@ -5,12 +5,14 @@ import AddPost from "../home/components/content/AddPost";
 import ArticleItem from "../home/components/content/ArticleItem";
 import AlbumAndFriend from "./components/albumAndFriend";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import User from "./components/user";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
 import { useGetMyPost } from "../../hooks/useGetPost";
+import { ShowAddPost } from "../../context/ShowAddPostContext";
 
 const UserProfile = () => {
+  const { showAddPost } = useContext(ShowAddPost);
   const { userId } = useParams();
   const [content, setContent] = useState([]);
   const [load, setLoad] = useState(false);
@@ -39,7 +41,7 @@ const UserProfile = () => {
               <ul className="document-container">
                 <li>{!isLoading && <AlbumAndFriend posts={posts} />}</li>
                 <li className="article">
-                  {self && <AddPost add={setContent} />}
+                  {self && showAddPost && <AddPost add={setContent} />}
                   {!isLoading && <ArticleItem posts={posts} />}
                 </li>
               </ul>

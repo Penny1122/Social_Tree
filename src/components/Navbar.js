@@ -1,19 +1,22 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useGetNoticeLength } from "../hooks/useGetNotice";
 import { useSearchUser } from "../hooks/useFriend";
 import { BiSearch } from "react-icons/bi";
 import { CgTrees } from "react-icons/cg";
-import { HiBell, HiChat } from "react-icons/hi";
+import { HiBell, HiPencilAlt } from "react-icons/hi";
+import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import { FaUserFriends } from "react-icons/fa";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useAuthStatus } from "../hooks/useAuthStatus";
+import { ShowAddPost } from "../context/ShowAddPostContext";
 import "./Navbar.css";
 import Notice from "./Notice";
 import FriendsInvited from "../pages/home/components/friend/FriendsInvited";
 
 const Navbar = () => {
+  const { showAddPost, setShowAddPost } = useContext(ShowAddPost);
   const searchRef = useRef(null);
   const { SearchUser, userList } = useSearchUser();
   const [showList, setShowList] = useState(false);
@@ -39,7 +42,7 @@ const Navbar = () => {
     setShowList(false);
     setShowFriendList(!showFriendList);
   };
-  const handleShowAddPost = () => {
+  const toggleShowAddPost = () => {
     setShowList(false);
     setShowFriendList(false);
     setShowAddPost(!showAddPost);
@@ -158,8 +161,11 @@ const Navbar = () => {
           )}
           {user && (
             <>
+              <div className="circle-box">
+                <HiPencilAlt className="notice" onClick={toggleShowAddPost} />
+              </div>
               <div className="circle-box" onClick={handleLink}>
-                <HiChat className="notice" />
+                <HiChatBubbleLeftRight className="notice" />
               </div>
               <div className="circle-box RWDIcon" onClick={toggleFriendList}>
                 <FaUserFriends className="notice" />

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import { useState, useRef } from "react";
 import "./AddPost.css";
 import { BsImages } from "react-icons/bs";
@@ -7,8 +7,10 @@ import { FaUserFriends } from "react-icons/fa";
 import { usePost } from "../../../../hooks/usePost";
 import { useTagFriend } from "../../../../hooks/useFriend";
 import { useAuthStatus } from "../../../../hooks/useAuthStatus";
+import { ShowAddPost } from "../../../../context/ShowAddPostContext";
 
 const AddPost = ({ add }) => {
+  const { setShowAddPost } = useContext(ShowAddPost);
   const inputRef = useRef(null);
   const { user } = useAuthStatus();
   const { addPost, isLoading, error } = usePost();
@@ -27,6 +29,7 @@ const AddPost = ({ add }) => {
     addPost({ add, note, previewURL, file, metaData, selectedFriends });
     setNote("");
     setFile(null);
+    setShowAddPost(false);
   };
   const handleInputChange = async (e) => {
     const value = e.target.value;
