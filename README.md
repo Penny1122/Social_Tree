@@ -6,7 +6,7 @@
 SocialTree is a social networking website that aims to create a vibrant online community for people to connect, share and engage with each other. The name "SocialTree" reflects the idea that the website is a virtual tree, with each user being a branch that is part of a larger network of interconnected branches.
 
 <p align="center">
-<img src="src/images/intro.png" width = "300"/>
+<img src="src/images/intro.png" width = "500"/>
 </p>
 
 :link: Website URL: https://social-tree-1d064.web.app/
@@ -32,7 +32,7 @@ SocialTree is a social networking website that aims to create a vibrant online c
 ### Tech Stack
 
 <p align="center">
-<img src="src/images/Tech2.png" width = "400"/>
+<img src="src/images/Tech2.png" width = "500"/>
 </p>
 
 ### React
@@ -40,7 +40,7 @@ SocialTree is a social networking website that aims to create a vibrant online c
 #### Component Structure
 
 <p align="center">
-<img src="src/images/structure.png" width = "400"/>
+<img src="src/images/structure.png" width = "500"/>
 </p>
 
 ### React Router
@@ -76,34 +76,34 @@ SocialTree is a social networking website that aims to create a vibrant online c
 ### Infinite scroll
 
 <p align="center">
-<img src="src/images/scroll.gif" width = "400"/>
+<img src="src/images/scroll.gif" width = "500"/>
 </p>
 
 ### Login system
 
 <p align="center">
-<img src="src/images/loginDemo.gif" width = "400"/>
+<img src="src/images/loginDemo.gif" width = "500"/>
 </p>
 
 ### Create a new post
 
 <p align="center">
-<img src="src/images/AddPostDemo.gif" width = "400"/>
+<img src="src/images/AddPostDemo.gif" width = "500"/>
 </p>
 
 ### Leave a comment
 
 <p align="center">
-<img src="src/images/LikeAndComment.gif" width = "400"/>
+<img src="src/images/LikeAndComment.gif" width = "500"/>
 </p>
 
 ### Chatroom
 
 <p align="center">
-<img src="src/images/ChatSearch.gif" width = "400"/>
+<img src="src/images/ChatSearch.gif" width = "500"/>
 </p>
 <p align="center">
-<img src="src/images/chatDemo.gif" width = "400"/>
+<img src="src/images/chatDemo.gif" width = "500"/>
 </p>
 
 ## Contact
