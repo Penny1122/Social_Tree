@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./ArticleItem.css";
 import Item from "./Item";
 import { Waypoint } from "react-waypoint";
 import { useGetPost } from "../../../../hooks/useGetPost";
-import MemberIcon from "../../../../images/02-6.jpg";
-import cat from "../../../../images/catcat.jpg";
-import Like from "../../../../images/like.png";
-import LikeFilled from "../../../../images/like-filled.png";
 
 const ArticleItem = ({ posts }) => {
   const { scrollGetData } = useGetPost();

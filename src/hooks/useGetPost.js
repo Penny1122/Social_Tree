@@ -26,8 +26,7 @@ export const usePostContext = () => {
 };
 
 export const useGetPost = () => {
-  const { dispatch } = usePostContext();
-  const [posts, setPosts] = useState([]);
+  const { setPosts } = usePostContext();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const querySnapshotRef = useRef();
@@ -41,7 +40,6 @@ export const useGetPost = () => {
       (querySnapshot) => {
         setPosts([]);
         querySnapshot.forEach((doc) => {
-          // results.push({ id: doc.id, ...doc.data() });
           setPosts((prevContent) => {
             return [
               ...prevContent,
@@ -60,7 +58,6 @@ export const useGetPost = () => {
         setError("failed to fetch data");
       }
     );
-    dispatch({ type: "Scroll", payload: posts });
     setIsLoading(false);
     return () => unSub();
   }, []);
@@ -90,8 +87,7 @@ export const useGetPost = () => {
         querySnapshot.docs[querySnapshot.docs.length - 1];
     }
   };
-  dispatch({ type: "Scroll", payload: posts });
-  return { isLoading, error, posts, scrollGetData };
+  return { isLoading, error, scrollGetData };
 };
 export const useGetMyPost = () => {
   const { userId } = useParams();
