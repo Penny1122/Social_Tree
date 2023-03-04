@@ -7,10 +7,16 @@ import {
   writeBatch,
   increment,
   setDoc,
+  getDocs,
+  query,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 import { useAuthStatus } from "./useAuthStatus";
+import { usePostContext } from "./useGetPost";
 
 export const useAddComment = () => {
+  const { posts, setPosts } = usePostContext();
   const [isLoadingAddComment, setIsLoadingAddComment] = useState(false);
   const { user } = useAuthStatus();
 
@@ -41,6 +47,26 @@ export const useAddComment = () => {
       uid: user.uid,
       notice: "對您的貼文發表留言。",
       noticedAt: Timestamp.now(),
+    });
+
+    const postsRef = collection(db, "posts");
+    const q = query(
+      postsRef,
+      orderBy("createdAt", "desc"),
+      limit(posts.length)
+    );
+    const querySnapshot = await getDocs(q);
+    setPosts([]);
+    querySnapshot.forEach((doc) => {
+      setPosts((prevContent) => {
+        return [
+          ...prevContent,
+          {
+            id: doc.id,
+            ...doc.data(),
+          },
+        ];
+      });
     });
 
     setIsLoadingAddComment(false);

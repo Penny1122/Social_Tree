@@ -33,12 +33,18 @@ const EditPost = ({ postId, note, author, image }) => {
     setCheckDelete(!checkDelete);
   };
   const handleCheckEdit = async (e) => {
-    const metaData = {
-      contentType: newFile.type,
-    };
-    await editPost({ newNote, newFile, postId, metaData });
-    setCheckEdit(!checkEdit);
-    setNewFile(null);
+    if (newFile) {
+      const metaData = {
+        contentType: newFile.type,
+      };
+      await editPost({ newNote, newFile, postId, metaData });
+      setCheckEdit(!checkEdit);
+      setNewFile(null);
+    } else {
+      await editPost({ newNote, postId, newFile });
+      setCheckEdit(!checkEdit);
+      setNewFile(null);
+    }
   };
 
   return (

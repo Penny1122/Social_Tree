@@ -171,7 +171,7 @@
   border-radius: 5px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   z-index: 10;
-  height: 60vh;
+  max-height: 60vh;
   overflow-y: scroll;
 }
 .navbar .notice-list-item {

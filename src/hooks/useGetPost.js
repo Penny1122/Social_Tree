@@ -33,6 +33,7 @@ export const useGetPost = () => {
 
   useEffect(() => {
     setIsLoading(true);
+    setPosts([]);
     const postsRef = collection(db, "posts");
     const q = query(postsRef, orderBy("createdAt", "desc"), limit(2));
     const unSub = onSnapshot(
@@ -144,6 +145,6 @@ export const GetSinglePost = () => {
     });
     setIsLoading(false);
     return () => unSub;
-  }, []);
+  }, [postId]);
   return { isLoading, post };
 };

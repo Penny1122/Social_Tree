@@ -7,11 +7,17 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  limit,
+  orderBy,
+  getDocs,
+  query,
 } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../utils/firebase";
+import { usePostContext } from "./useGetPost";
 
 export const usePost = () => {
+  const { posts, setPosts } = usePostContext();
   const { user } = useAuthStatus();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -53,13 +59,41 @@ export const usePost = () => {
   };
 
   const editPost = async ({ newNote, newFile, postId, metaData }) => {
-    const imageRef = ref(storage, "post-images/" + postId);
-    await uploadBytesResumable(imageRef, newFile, metaData);
-    const imageURL = await getDownloadURL(imageRef);
-    const userRef = doc(db, "posts", postId);
-    await updateDoc(userRef, {
-      note: newNote,
-      imageURL: imageURL,
+    if (newFile) {
+      const imageRef = ref(storage, "post-images/" + postId);
+      await uploadBytesResumable(imageRef, newFile, metaData);
+      const imageURL = await getDownloadURL(imageRef);
+      const userRef = doc(db, "posts", postId);
+      await updateDoc(userRef, {
+        note: newNote,
+        imageURL: imageURL,
+      });
+    } else {
+      const userRef = doc(db, "posts", postId);
+      await updateDoc(userRef, {
+        note: newNote,
+      });
+    }
+
+    const postsRef = collection(db, "posts");
+    const q = query(
+      postsRef,
+      orderBy("createdAt", "desc"),
+      limit(posts.length)
+    );
+
+    const querySnapshot = await getDocs(q);
+    setPosts([]);
+    querySnapshot.forEach((doc) => {
+      setPosts((prevContent) => {
+        return [
+          ...prevContent,
+          {
+            id: doc.id,
+            ...doc.data(),
+          },
+        ];
+      });
     });
   };
 

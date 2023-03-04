@@ -24,7 +24,7 @@ const PostItem = ({ post }) => {
   const [commentCLoadingIcon, setCommentCLoadingIcon] = useState(false);
   const { comments, isLoading } = useGetComment(id);
   const { Time } = useTime();
-  const { likePost, isLoadingLike } = useLikePost();
+  const { likeSinglePost, isLoadingLike } = useLikePost();
   const [showTime, setShowTime] = useState(false);
   const [isAuthor, setIsAuthor] = useState(false);
   useEffect(() => {
@@ -46,7 +46,7 @@ const PostItem = ({ post }) => {
   });
 
   const handleLikePost = () => {
-    likePost({ id, isLiked, author });
+    likeSinglePost({ id, isLiked, author });
   };
 
   const handleSubmitComment = () => {
@@ -57,7 +57,6 @@ const PostItem = ({ post }) => {
       setTimeout(() => {
         setCommentCLoadingIcon(false);
       }, 1000);
-      setShowComments(true);
     }
   };
   return (
