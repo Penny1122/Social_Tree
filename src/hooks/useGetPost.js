@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   collection,
   query,
@@ -6,47 +6,92 @@ import {
   onSnapshot,
   where,
   doc,
+  limit,
+  startAfter,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { useParams } from "react-router-dom";
+import { PostContext } from "../context/PostContext";
+import { useContext } from "react";
+
+export const usePostContext = () => {
+  const context = useContext(PostContext);
+
+  if (!context) {
+    throw Error("useAuthStatus must be inside an AuthStatusContextProvider");
+  }
+
+  return context;
+};
 
 export const useGetPost = () => {
+  const { dispatch } = usePostContext();
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const querySnapshotRef = useRef();
 
   useEffect(() => {
     setIsLoading(true);
     const postsRef = collection(db, "posts");
-    const q = query(postsRef, orderBy("createdAt"));
+    const q = query(postsRef, orderBy("createdAt", "desc"), limit(2));
     const unSub = onSnapshot(
       q,
       (querySnapshot) => {
         setPosts([]);
-
         querySnapshot.forEach((doc) => {
           // results.push({ id: doc.id, ...doc.data() });
           setPosts((prevContent) => {
             return [
+              ...prevContent,
               {
                 id: doc.id,
                 ...doc.data(),
               },
-              ...prevContent,
             ];
           });
         });
+        querySnapshotRef.current =
+          querySnapshot.docs[querySnapshot.docs.length - 1];
       },
       (error) => {
         console.log(error);
         setError("failed to fetch data");
       }
     );
+    dispatch({ type: "Scroll", payload: posts });
     setIsLoading(false);
     return () => unSub();
   }, []);
 
-  return { isLoading, error, posts };
+  const scrollGetData = async () => {
+    if (querySnapshotRef.current) {
+      const postsRef = collection(db, "posts");
+      const q = query(
+        postsRef,
+        orderBy("createdAt", "desc"),
+        startAfter(querySnapshotRef.current),
+        limit(2)
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setPosts((prevContent) => {
+          return [
+            ...prevContent,
+            {
+              id: doc.id,
+              ...doc.data(),
+            },
+          ];
+        });
+      });
+      querySnapshotRef.current =
+        querySnapshot.docs[querySnapshot.docs.length - 1];
+    }
+  };
+  dispatch({ type: "Scroll", payload: posts });
+  return { isLoading, error, posts, scrollGetData };
 };
 export const useGetMyPost = () => {
   const { userId } = useParams();
@@ -68,7 +113,6 @@ export const useGetMyPost = () => {
         setPosts([]);
 
         querySnapshot.forEach((doc) => {
-          // results.push({ id: doc.id, ...doc.data() });
           setPosts((prevContent) => {
             return [
               {
@@ -96,7 +140,6 @@ export const GetSinglePost = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState(false);
   const { postId } = useParams();
-  console.log(postId);
   useEffect(() => {
     setIsLoading(true);
     const postRef = doc(db, "posts", postId);
