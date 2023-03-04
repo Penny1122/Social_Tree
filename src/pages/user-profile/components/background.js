@@ -23,7 +23,6 @@ const Background = ({ self }) => {
     const metaData = {
       contentType: backgroundImage.type,
     };
-    console.log(backgroundImage.type);
     updateBackgroundImage({ metaData, backgroundImage });
     setBackgroundImage("");
     myRef.current.value = "";
@@ -65,9 +64,6 @@ const Background = ({ self }) => {
         onChange={(e) => {
           e.preventDefault();
           setBackgroundImage(e.target.files[0]);
-          console.log(e);
-          console.log(e.target);
-          console.log(e.target.files[0]);
         }}
       />
     </>

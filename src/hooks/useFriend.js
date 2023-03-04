@@ -185,15 +185,12 @@ export const useFriend = () => {
     const usersRef = doc(db, "users", user.uid);
     const friendRef = doc(usersRef, "friends", userId);
     const unSub = onSnapshot(friendRef, (docSnap) => {
-      console.log(docSnap);
       if (docSnap.exists() && docSnap.data().reply) {
         setInvited(true);
         setFriend(true);
       } else if (docSnap.exists()) {
         setInvited(true);
       } else {
-        // doc.data() will be undefined in this case
-        // console.log("No such document!");
         setInvited(false);
       }
     });
@@ -241,7 +238,6 @@ export const useTagFriend = () => {
 
   const SearchFriend = async ({ queryFriend }) => {
     setSearchFriend([]);
-    console.log(queryFriend);
     const userRef = doc(db, "users", user.uid);
     const friendRef = collection(userRef, "friends");
     const q = query(

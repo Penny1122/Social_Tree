@@ -6,7 +6,6 @@ const Chats = () => {
   const { chats, ReadMessage } = useChat();
   const { dispatch } = useChatStatus();
   const handleSelect = async (e, f) => {
-    console.log(e);
     dispatch({ type: "Change_user", payload: e });
     ReadMessage(f.userInfo.uid);
   };

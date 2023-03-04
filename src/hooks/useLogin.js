@@ -16,8 +16,6 @@ export const useLogin = () => {
     setError(null);
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log(response);
-      console.log("login success");
       dispatch({ type: "Login", status: response.user });
 
       const res = await getDoc(doc(db, "userChats", response.user.uid));

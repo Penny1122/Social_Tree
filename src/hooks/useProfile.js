@@ -26,11 +26,9 @@ export const useProfile = () => {
     useState(true);
 
   useEffect(() => {
-    console.log(userId);
     const ref = doc(db, "users", userId || user.uid);
     const unSub = onSnapshot(ref, (doc) => {
       setProfile({ id: doc.id, ...doc.data() });
-      // console.log(doc.data());
     });
     return () => unSub;
   }, [userId]);

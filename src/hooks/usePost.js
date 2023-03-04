@@ -49,9 +49,7 @@ export const usePost = () => {
         });
       });
       setIsLoading(false);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
+    } catch (e) {}
   };
 
   const editPost = async ({ newNote, newFile, postId, metaData }) => {
