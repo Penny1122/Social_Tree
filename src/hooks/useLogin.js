@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../utils/firebase";
 import { useAuthStatus } from "./useAuthStatus";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc, getDocs } from "firebase/firestore";
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +22,12 @@ export const useLogin = () => {
       if (!res.exists()) {
         //create a chat in chats collection
         await setDoc(doc(db, "userChats", response.user.uid), {});
+      }
+      const res2 = await getDoc(doc(db, "users", response.user.uid));
+      if (res2.exists()) {
+        await updateDoc(doc(db, "users", response.user.uid), {
+          login: true,
+        });
       }
 
       setIsLoading(false);

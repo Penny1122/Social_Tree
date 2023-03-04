@@ -37,6 +37,7 @@ a {
   background-color: white;
   height: 90vh;
   grid-area: friend;
+  overflow-y: scroll;
 }
 @media (max-width: 1200px) {
   .home .profile {

@@ -6,9 +6,10 @@ import { FaUserFriends } from "react-icons/fa";
 import FriendsInvitedItem from "./FriendsInvitedItem";
 import FriendsItem from "./FriendsItem";
 import { useFriendInvite } from "../../../../hooks/useFriend";
+import { async } from "@firebase/util";
 
 const FriendsInvited = () => {
-  const { inviteInfo, friendsInfo, empty } = useFriendInvite();
+  const { inviteInfo, empty, usersInfo } = useFriendInvite();
 
   return (
     <div className="invited-friend">
@@ -21,7 +22,6 @@ const FriendsInvited = () => {
           <hr className="friend-hr" />
         </>
       )}
-
       {inviteInfo.map((doc) => {
         const { id, displayName, photoURL, invitedAt } = doc;
         return (
@@ -39,15 +39,15 @@ const FriendsInvited = () => {
         好友列表
       </div>
       <hr className="friend-hr" />
-      {friendsInfo.map((doc) => {
-        const { id, displayName, photoURL, invitedAt } = doc;
+      {usersInfo.map((doc) => {
+        const { id, displayName, photoURL, login } = doc;
         return (
           <FriendsItem
             key={id}
             uid={id}
             displayName={displayName}
             photoURL={photoURL}
-            invitedAt={invitedAt}
+            status={login ? login : false}
           />
         );
       })}

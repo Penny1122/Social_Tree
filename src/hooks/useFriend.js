@@ -21,9 +21,38 @@ export const useFriendInvite = () => {
   const { userId } = useParams();
   const [inviteInfo, setInviteInfo] = useState([]);
   const [friendsInfo, setFriendsInfo] = useState([]);
+  const [usersInfo, setUsersInfo] = useState([]);
   const [empty, setEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const userRef = collection(db, "users");
+    const unSub = onSnapshot(
+      userRef,
+      (querySnapshot) => {
+        setUsersInfo([]);
+        querySnapshot.forEach((doc) => {
+          setUsersInfo((prevContent) => {
+            return [
+              {
+                id: doc.id,
+                ...doc.data(),
+              },
+              ...prevContent,
+            ];
+          });
+        });
+      },
+      (error) => {
+        console.log(error);
+        setError("failed to fetch Users");
+      }
+    );
+    setIsLoading(false);
+    return () => unSub();
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -93,7 +122,8 @@ export const useFriendInvite = () => {
     setIsLoading(false);
     return () => unSub();
   }, []);
-  return { empty, friendsInfo, inviteInfo, useFriendInvite };
+
+  return { empty, friendsInfo, inviteInfo, useFriendInvite, usersInfo };
 };
 
 export const friendList = () => {

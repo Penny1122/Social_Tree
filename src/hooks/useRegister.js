@@ -50,6 +50,7 @@ export const useRegister = () => {
         displayName: response.user.displayName,
         photoURL: response.user.photoURL,
         backgroundURL: defaultBackgroundImageURL,
+        login: true,
       });
       await setDoc(doc(db, "userChats", response.user.uid), {});
 
