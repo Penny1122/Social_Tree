@@ -40,7 +40,11 @@ const Introduce = () => {
         <div className="login-function">
           <img src={Sign} className="login-function-img" />
           <div>Easy to Use</div>
-          <button class="button-52" role="button" onClick={() => setShow(true)}>
+          <button
+            className="button-52"
+            role="button"
+            onClick={() => setShow(true)}
+          >
             Registration system
           </button>
           <button

@@ -5,7 +5,7 @@ import { useGetPost } from "../../../../hooks/useGetPost";
 import { HiUserAdd } from "react-icons/hi";
 import { handleFriend } from "../../../../hooks/useFriend";
 
-const FriendsInvitedItem = ({ uid, displayName, photoURL, invitedAt }) => {
+const FriendsInvitedItem = ({ uid, displayName, photoURL }) => {
   const { acceptFriend } = handleFriend();
   const handleAccept = () => {
     acceptFriend({ uid, displayName, photoURL });

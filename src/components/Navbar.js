@@ -161,8 +161,8 @@ const Navbar = () => {
           )}
           {user && (
             <>
-              <div className="circle-box">
-                <HiPencilAlt className="notice" onClick={toggleShowAddPost} />
+              <div className="circle-box" onClick={toggleShowAddPost}>
+                <HiPencilAlt className="notice" />
               </div>
               <div className="circle-box" onClick={handleLink}>
                 <HiChatBubbleLeftRight className="notice" />
