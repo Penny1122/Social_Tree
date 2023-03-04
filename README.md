@@ -1,7 +1,5 @@
 # SocialTree
 
----
-
 <p align="center">
 <img src="src/images/logo.JPG"/>
 </p>
@@ -31,8 +29,6 @@ SocialTree is a social networking website that aims to create a vibrant online c
 
 ## ✿ Front-end Technique
 
----
-
 ### Tech Stack
 
 <p align="center">
@@ -59,8 +55,6 @@ SocialTree is a social networking website that aims to create a vibrant online c
 
 ## ✿ Back-end Technique (Firebase Cloud Services)
 
----
-
 ### Firebase Authentication
 
 - Register / Login with email and password.
@@ -78,8 +72,6 @@ SocialTree is a social networking website that aims to create a vibrant online c
 - Host the static content of the project.
 
 ## ✿ Main Features
-
----
 
 ### Infinite scroll
 
@@ -115,8 +107,6 @@ SocialTree is a social networking website that aims to create a vibrant online c
 </p>
 
 ## Contact
-
----
 
 - :blush:Developer: Szu-Ping, Chen
 - :mailbox:Email: rainbow801122@gmail.com
