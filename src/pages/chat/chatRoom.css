@@ -28,7 +28,7 @@
 
 .chatRoom .chats {
   overflow-y: scroll;
-  height: 100%;
+  height: 620px;
 }
 
 .chatRoom .searchForm {
