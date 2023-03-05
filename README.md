@@ -9,6 +9,10 @@ SocialTree is a social networking website that aims to create a vibrant online c
 <img src="src/images/intro.png"/>
 </p>
 
+<p align="center">
+<img src="src/images/function.png"/>
+</p>
+
 :link: Website URL: https://social-tree-1d064.web.app/
 
 ## Table of Content
