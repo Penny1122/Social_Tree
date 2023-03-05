@@ -289,6 +289,11 @@ export const useChat = () => {
 
     await updateDoc(doc(db, "userChats", userData.uid), {
       //   unreadCount: increment(1),
+      [user.uid + ".userInfo"]: {
+        uid: user.uid,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      },
       [user.uid + ".lastMessage"]: {
         text,
       },

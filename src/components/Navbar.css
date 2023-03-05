@@ -100,6 +100,8 @@
   color: var(--darker-gray);
 }
 .navbar .search-user-list {
+  max-height: 600px;
+  overflow-y: scroll;
   width: inherit;
   min-height: 40px;
   position: absolute;

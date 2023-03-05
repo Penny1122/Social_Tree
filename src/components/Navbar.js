@@ -108,6 +108,7 @@ const Navbar = () => {
                         onClick={() => {
                           setShowSearch(false);
                           setShowIcon(true);
+                          setQueryUser("");
                         }}
                       />
                       <input
