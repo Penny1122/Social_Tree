@@ -21,8 +21,9 @@
   align-items: center;
 }
 .single-post .post-image img {
-  max-width: 600px;
-  max-height: 700px;
+  width: 600px;
+  height: 700px;
+  object-fit: contain;
 }
 .single-post .post-box {
   flex: 1;
@@ -219,8 +220,10 @@
     width: 100%;
   }
   .single-post .post-image img {
-    max-width: 400px;
-    max-height: 400px;
+    width: unset;
+    height: unset;
+    max-width: 80%;
+    min-height: 700px;
   }
 }
 @media (max-width: 700px) {
@@ -229,8 +232,7 @@
     display: block;
   }
   .single-post .post-image img {
-    max-width: 400px;
-    max-height: 400px;
+    min-height: 400px;
   }
 }
 @media (max-width: 450px) {
@@ -241,5 +243,6 @@
   .single-post .post-image img {
     max-width: 300px;
     max-height: 300px;
+    min-height: unset;
   }
 }

@@ -121,7 +121,7 @@ const PostItem = ({ post }) => {
               );
             })}
           </div>
-          <hr />
+          {comments.length > 0 && <hr />}
           <div className="message">
             <img className="poster-photo" src={user.photoURL} alt="" />
             <input

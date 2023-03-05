@@ -26,6 +26,11 @@
   border-bottom: 1px solid gray;
 }
 
+.chatRoom .chats {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 .chatRoom .searchForm {
   padding: 10px;
 }
