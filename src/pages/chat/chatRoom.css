@@ -13,7 +13,6 @@
   width: 65%;
   height: 80%;
   display: flex;
-  overflow: hidden;
 }
 
 .chatRoom .sidebar {
@@ -28,7 +27,7 @@
 
 .chatRoom .chats {
   overflow-y: scroll;
-  height: 620px;
+  height: 80%;
 }
 
 .chatRoom .searchForm {
