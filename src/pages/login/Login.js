@@ -5,15 +5,19 @@ import { useLogin } from "../../hooks/useLogin";
 import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("penny@gmail.com");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const { login, isLoading, error } = useLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
   };
-
+  const testAccount = (e) => {
+    e.preventDefault();
+    setEmail("penny@gmail.com");
+    setPassword(123456);
+  };
   return (
     <div className="login">
       <div className="card">
@@ -27,7 +31,7 @@ const Login = () => {
         </div>
         <div className="right">
           <h1>Login</h1>
-          <form onSubmit={handleSubmit}>
+          <form>
             <label>
               <span>信箱：</span>
               <input
@@ -46,7 +50,8 @@ const Login = () => {
                 value={password}
               />
             </label>
-            {!isLoading && <button>登入 / Login</button>}
+            <button onClick={testAccount}>使用測試帳號</button>
+            {!isLoading && <button onClick={handleSubmit}>登入 / Login</button>}
             {isLoading && <button disabled>Loading</button>}
             {error && <p className="error">{error}</p>}
             <p className="to-register">
