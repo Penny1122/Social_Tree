@@ -186,7 +186,7 @@
 }
 .single-post .comment-list {
   max-height: 500px;
-  overflow-y: scroll;
+  overflow-y: overlay;
 }
 .single-post .comment img {
   width: 40px;

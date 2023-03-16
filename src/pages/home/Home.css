@@ -31,13 +31,13 @@ a {
   grid-area: content;
   background-color: var(--light-gray);
   height: 90vh;
-  overflow-y: scroll;
+  overflow-y: overlay;
 }
 .home .friend {
   background-color: white;
   height: 90vh;
   grid-area: friend;
-  overflow-y: scroll;
+  overflow-y: overlay;
 }
 @media (max-width: 1200px) {
   .home .profile {

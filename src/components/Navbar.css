@@ -101,7 +101,7 @@
 }
 .navbar .search-user-list {
   max-height: 600px;
-  overflow-y: scroll;
+  overflow-y: overlay;
   width: inherit;
   min-height: 40px;
   position: absolute;
@@ -174,7 +174,7 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   z-index: 10;
   max-height: 60vh;
-  overflow-y: scroll;
+  overflow-y: overlay;
 }
 .navbar .notice-list-item {
   display: flex;

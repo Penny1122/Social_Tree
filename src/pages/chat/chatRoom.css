@@ -26,7 +26,7 @@
 }
 
 .chatRoom .chats {
-  overflow-y: scroll;
+  overflow-y: overlay;
   height: 80%;
 }
 
@@ -148,7 +148,7 @@
   background-color: var(--background-color);
   padding: 10px;
   height: calc(100% - 100px);
-  overflow-y: scroll;
+  overflow-y: overlay;
 }
 
 .messages .message {
@@ -192,6 +192,7 @@
 
 .owner {
   flex-direction: row-reverse;
+  margin-right: 15px;
 }
 
 .owner .messageContent {
