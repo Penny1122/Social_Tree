@@ -50,8 +50,8 @@ const Login = () => {
                 value={password}
               />
             </label>
-            <button onClick={testAccount}>使用測試帳號</button>
             {!isLoading && <button onClick={handleSubmit}>登入 / Login</button>}
+            <button onClick={testAccount}>使用測試帳號</button>
             {isLoading && <button disabled>Loading</button>}
             {error && <p className="error">{error}</p>}
             <p className="to-register">
