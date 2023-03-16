@@ -5,6 +5,8 @@
 </p>
 SocialTree is a social networking website that aims to create a vibrant online community for people to connect, share and engage with each other. The name "SocialTree" reflects the idea that the website is a virtual tree, with each user being a branch that is part of a larger network of interconnected branches.
 
+####:link: Website URL: https://social-tree-1d064.web.app/
+
 <p align="center">
 <img src="src/images/intro.png"/>
 </p>
@@ -12,8 +14,6 @@ SocialTree is a social networking website that aims to create a vibrant online c
 <p align="center">
 <img src="src/images/function.png"/>
 </p>
-
-:link: Website URL: https://social-tree-1d064.web.app/
 
 ## Table of Content
 
@@ -71,7 +71,7 @@ The SocialTree website's user interface is built using **React** and incorporate
 ### Responsive Web Design
 
 <p align="center">
-<img src="src/images/device.jpg"/>
+<img src="src/images/device.jpg" width="500"/>
 </p>
 
 ## ✿ Back-end Technique (Firebase Cloud Services)
